@@ -61,3 +61,46 @@ The site should be able to show pins, caps and cap cases, this products should b
 - Product navigation and search should be simple and effective.
 - The platform must be responsive, adapting to different devices (PCs, tablets, mobiles).
 
+## STRUCTURE OF THE DATABASE
+
+### Users(Using devise) we need to add:
+- First name.(Varchar)
+- Last name. (Varchar)
+- City  (Varchar)
+- State (Varchar)
+- ZIP Code (Int)
+- Address. (Text)
+- phone-number. (Varchar)
+- ID Order.(foreign key) (Int)
+
+### Products
+- Name (Visible) (Varchar) 
+- Description (visible) (string) Optional
+- Type (Visible) (Varchar)
+- Brand (Visible) (Varchar)
+- Image (Visible) (BLOB)
+- Size (Visible) (Varchar) Optional
+- Base-Price ( Not visible ) ( Float )
+- Discount (Visible)( Float ) Optional
+- Total-Price (Visible)  ( Float)
+- Stock ( Int )  
+- Availability (Visible) (Boolean)
+
+### Orders
+- Users_ID (Invisible)
+- Product_ID (Invisible)
+- Product_Total-Price (Visible)(Float)
+- User_First_Namet-Name (Visible)
+- User_Last-Name (Visible)
+- User_City  (Visible)(Varchar)
+- User_State (Visible)(Varchar)
+- User_ZIP Code (Visible)(Int)
+- User_Address. (Visible)(Text)
+- User_Phone number. (Visible)(Varchar)
+- Shipment-Type (Visible(admin-only))(Varchar)
+- Order-Hour (Visible(admin-only))(Time)
+- Order-Date (Visible)(Date)
+- Product-Quantity (Visible)(Int)
+- Order_Status
+
+
