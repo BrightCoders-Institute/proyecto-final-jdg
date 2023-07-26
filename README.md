@@ -66,12 +66,15 @@ The site should be able to show pins, caps and cap cases, this products should b
 ### Users(Using devise) we need to add:
 - First name.(Varchar)
 - Last name. (Varchar)
+- ID Order.(foreign key) (Int)
+
+### Adress
 - City  (Varchar)
 - State (Varchar)
 - ZIP Code (Int)
 - Address. (Text)
-- phone-number. (Varchar)
-- ID Order.(foreign key) (Int)
+- Phone-number. (Varchar)
+- ID User. (foreign key) (int)
 
 ### Products
 - Name (Visible) (Varchar) 
