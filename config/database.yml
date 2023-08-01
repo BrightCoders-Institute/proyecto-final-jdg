@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
+  host: <%= ENV['PG_HOST'] %>
+
+development:
+  <<: *default
+  database: proyecto_final_jdg_development
+
+test:
+  <<: *default
+  database: proyecto_final_jdg_test
+
+production:
+  <<: *default
+  database: proyecto_final_jdg_production
