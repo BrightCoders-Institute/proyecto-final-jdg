@@ -5,5 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   self.inheritance_column = :type
+
+  validates :first_name, :last_name, presence: true
   # Devise modules and other common user attributes and methods
 end
