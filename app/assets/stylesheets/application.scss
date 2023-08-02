@@ -1,10 +1,15 @@
  @import "font-awesome";
  @import "bootstrap";
- @import "./layout/navbar";
  @import "./config/variables";
  @import "./components/top-message";
+ @import "./layout/footer";
+ @import "./layout/navbar";
+
+
 
 
  body{
-  font-family: var(--font-family-main);
+  padding: 0!important;
+  margin:0!important;
+  font-family: var(--font-family-main) !important;
  }
