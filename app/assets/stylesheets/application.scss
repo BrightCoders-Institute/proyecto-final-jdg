@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import 
+ "config/variables.scss",
+ "components/login.scss";
+
+
+ body { 
+  font-family: $font-family-main;
+ }
