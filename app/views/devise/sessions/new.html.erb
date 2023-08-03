@@ -6,16 +6,16 @@
         <div class="container">
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
-              <h3 class="login-heading mb-4">Welcome back!</h3>
+              <h3 class="login-heading mb-4 fw-medium fs-1 welcome-text">Welcome back!</h3>
 
               <!-- Sign In Form -->
-              <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mb-3 col-6"}) do |f| %>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mb-3 col-9"}) do |f| %>
                 <div class="form-floating mb-3">
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id:"floatingInput",placeholder:"name@example.com"%>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control input", id:"floatingInput",placeholder:"name@example.com"%>
                   <%= f.label :email,  for:"floatingInput" %>
                 </div>
                 <div class="form-floating mb-3">
-                  <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "exampleInputPassword1", type:"password",id:"floatingPassword",placeholder:"Password" %>
+                  <%= f.password_field :password, autocomplete: "current-password", class: "form-control input", id: "exampleInputPassword1", type:"password",id:"floatingPassword",placeholder:"Password" %>
                   <%= f.label :password, for:"floatingPassword" %>
                 </div>
 
@@ -24,12 +24,7 @@
                   <%= f.label :remember_me, class: "form-check-label", for: "rememberPasswordCheck" %>
                 </div>
 
-                <div class="d-grid">
-                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Sign in</button>
-                  <div class="text-center">
-                    <a class="small" href="#">Forgot password?</a>
-                  </div>
-                </div>
+                
 
                 <%= render "devise/shared/links" %>
               <% end %>

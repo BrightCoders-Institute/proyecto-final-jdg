@@ -1,0 +1,9 @@
+@import 
+"config/variables.scss";
+.text-orange {
+  color: $brand-color-yellow;
+}
+
+.text-orange:hover{
+  color: #222;
+}
