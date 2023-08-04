@@ -1,22 +1,30 @@
-<div class="container d-flex justify-content-center py-5">
-  <div class="card text-center w-50 p-5">
-    <h2 class="my-5" >Forgot your password?</h2>
+<div class="container-fluid ps-md-0">
+  <div class="row g-0">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h2 class="my-5" >Forgot your password?</h2>
 
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+              <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="form-floating mb-3">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control input", id:"floatingInput",placeholder:"Email"%>
-        <%= f.label :email,  for:"floatingInput" %>
+                <div class="form-floating mb-3">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control input w-75", id:"floatingInput",placeholder:"Email"%>
+                  <%= f.label :email,  for:"floatingInput" %>
+                </div>
+
+                <%= f.submit "Send me reset password instructions", class: "btn  btn-login  text-uppercase fw-bold my-3 w-75" %>
+
+              <% end %>
+
+               <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <%= f.submit "Send me reset password instructions", class: "btn  btn-login  text-uppercase fw-bold my-3 w-100" %>
-
-    <% end %>
-
-  <%= render "devise/shared/links" %>
-
+    </div>
   </div>
 </div>
-
-
