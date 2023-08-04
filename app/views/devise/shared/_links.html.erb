@@ -1,7 +1,8 @@
 <div class="d-grid">
-  <% unless params[:controller] == "devise/passwords" && params[:action] == "new" %>
-    <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2 button-background" type="submit">Sign in</button>
+  <% unless params[:controller] == "devise/passwords" && params[:action] == "new" || params[:controller] == "devise/registrations" && params[:action] == "new" %>
+    <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Sign in</button>
   <% end %>
+
 
   <div class="text-left mt-3">
     <%- if controller_name != 'sessions' %>
