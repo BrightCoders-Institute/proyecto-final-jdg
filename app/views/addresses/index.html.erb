@@ -1,0 +1,40 @@
+<h1>Address List</h1>
+<%= link_to 'New Address' , new_address_path %>
+<table>
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>State</th>
+      <th>ZIP Code</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+      <tr>
+        <td>
+          <%= address.city %>
+        </td>
+        <td>
+          <%= address.state %>
+        </td>
+        <td>
+          <%= address.zip_code %>
+        </td>
+        <td>
+          <%= address.address %>
+        </td>
+        <td>
+          <%= address.phone_number %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_address_path(address) %>
+          <%= link_to "Delete", address_path(address), method: :delete, data: { turbo_method: :delete,
+            turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
