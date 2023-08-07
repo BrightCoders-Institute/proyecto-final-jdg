@@ -30,6 +30,9 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis"
 
+# Use devise for the creation of the login
+gem 'devise', '~> 4.9', '>= 4.9.2'
+
 # Postgresql
 gem 'pg'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
