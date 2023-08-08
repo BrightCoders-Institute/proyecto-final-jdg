@@ -1,0 +1,11 @@
+ @import "font-awesome";
+ @import "bootstrap";
+ @import 
+ "./config/variables",
+ "./components/top-message",
+ "./layout/footer",
+ "./layout/navbar";
+
+body { 
+  font-family: $font-family-main;
+ }

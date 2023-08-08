@@ -1,0 +1,23 @@
+.logo-size {
+  width: 9rem;
+}
+
+.underline {
+  transition: text-decoration-color 200ms;
+  text-decoration: underline 0.10rem rgba(255, 255, 255, 0);
+}
+
+.underline:hover {
+  text-decoration-color: rgb(0, 0, 0);
+}
+
+.active{
+  color: inherit;
+  text-decoration: underline 0.10rem rgb(0, 0, 0);
+}
+
+.color-icon{
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  font-size: 1.3rem;
+}
