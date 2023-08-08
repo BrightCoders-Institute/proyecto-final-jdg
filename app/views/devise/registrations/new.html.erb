@@ -6,26 +6,29 @@
         <div class="container">
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
-              <!-- Sign In Form -->
-             <h2 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Registration</h2>
+              <h2 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Registration</h2>
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
+                
+                <!-- First Name -->
+                  <div class="mb-3 col-lg-9">
+                    <%= f.label :first_name, class: "form-label" %>
+                    <%= f.text_field :first_name, class: "form-control", autofocus: true %>
+                  </div>
 
-                <div class="mb-3 col-lg-9">
-                  <%= f.label :first_name, class: "form-label" %>
-                  <%= f.text_field :first_name, class: "form-control", autofocus: true %>
-                </div>
-
-                <div class="mb-3 col-lg-9">
-                  <%= f.label :last_name, class: "form-label" %>
-                  <%= f.text_field :last_name, class: "form-control" %>
-                </div>
-
+                  <!-- Last Name -->
+                  <div class="mb-3 col-lg-9">
+                    <%= f.label :last_name, class: "form-label" %>
+                    <%= f.text_field :last_name, class: "form-control" %>
+                  </div>
+                
+                <!-- Email -->
                 <div class="mb-3 col-lg-9">
                   <%= f.label :email, class: "form-label" %>
                   <%= f.email_field :email, class: "form-control", autocomplete: "email" %>
                 </div>
-
+                
+                <!-- Password -->
                 <div class="mb-3 col-lg-9">
                   <%= f.label :password, class: "form-label" %>
                   <% if @minimum_password_length %>
@@ -33,17 +36,17 @@
                   <% end %>
                   <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
                 </div>
-
+                
+                <!-- Password Confirmation -->
                 <div class="mb-3 col-lg-9">
                   <%= f.label :password_confirmation, class: "form-label" %>
                   <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
                 </div>
-
+                
+                <!-- Submit Button -->
                 <div class="actions">
-                  <%= f.submit "Sign up", class: "btn  btn-login  text-uppercase fw-bold my-3 col-lg-9" %>
+                  <%= f.submit "Sign up", class: "btn btn-login text-uppercase fw-bold my-3 col-lg-9" %>
                 </div>
-
-                <%= render "devise/shared/links" %>
 
               <% end %>
             </div>
