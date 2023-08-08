@@ -1,3 +1,4 @@
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,14 +14,17 @@
  *= require_tree .
  *= require_self
  */
+ @import "font-awesome";
  @import "bootstrap";
+
  @import 
  "config/variables.scss",
  "components/login.scss",
- "components/links.scss";
-
-
-
- body { 
+ "components/links.scss",
+ "./components/top-message",
+ "./layout/footer",
+ "./layout/navbar";
+   
+body { 
   font-family: $font-family-main;
  }

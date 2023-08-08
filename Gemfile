@@ -75,9 +75,11 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-#bootstrap
+#Bootstrap
 gem "bootstrap"
 
-#SCSS
+#Sass
 gem "sassc-rails"
+
+#font awesome
+gem "font-awesome-sass", "~> 6.4.0"

@@ -6,11 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!--BOOTSTRAP -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="<your-kit-code>" data-mutate-approach="sync"></script>
   </head>
 
   <body>
+    <%= render partial: "partials/components/top-message" %>
+    <%= render partial: "partials/layout/navbar" %>
     <%= yield %>
+    <%= render partial: "partials/layout/footer" %>
   </body>
 </html>
