@@ -1,0 +1,41 @@
+@import 
+"config/variables.scss";
+.login {
+  min-height: 100vh;
+}
+
+.welcome-text {
+  font-size: 5rem;
+}
+
+.bg-image {
+  background-image: image_url('login-image.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-heading {
+  font-weight: 300;
+}
+
+.btn-login {
+  border: none;
+  background-color: $brand-color-yellow;
+  color: $black-background;
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  outline: none;
+  padding: 0.75rem 1rem;
+  transition: background 0.4s ease-in-out;
+}
+
+.btn-login:hover{
+  color: $black-background;
+  background-color: $brand-color-yellow;
+}
+
+.input:focus {
+  border: $black-background solid 1px;
+  box-shadow: none;
+  outline: none;
+}
