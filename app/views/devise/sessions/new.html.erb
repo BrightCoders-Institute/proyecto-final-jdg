@@ -11,11 +11,11 @@
               <!-- Sign In Form -->
               <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mb-3 col-9"}) do |f| %>
                 <div class="form-floating mb-3">
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control input", id:"floatingInput",placeholder:"name@example.com"%>
+                  <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: "form-control input", id:"floatingInput",placeholder:"name@example.com"%>
                   <%= f.label :email,  for:"floatingInput" %>
                 </div>
                 <div class="form-floating mb-3">
-                  <%= f.password_field :password, autocomplete: "current-password", class: "form-control input", id: "exampleInputPassword1", type:"password",id:"floatingPassword",placeholder:"Password" %>
+                  <%= f.password_field :password,required: true, autocomplete: "current-password", class: "form-control input", id: "exampleInputPassword1", type:"password",id:"floatingPassword",placeholder:"Password" %>
                   <%= f.label :password, for:"floatingPassword" %>
                 </div>
 
