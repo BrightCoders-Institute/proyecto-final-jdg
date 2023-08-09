@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def authorized?
+    unless current_user.usertype == 'customer'
+      redirect_to root_path
+    end
+  end
+  
   protected
 
   def configure_permitted_parameters

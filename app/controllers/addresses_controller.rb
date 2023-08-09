@@ -35,11 +35,7 @@ class AddressesController < ApplicationController
   end
 
   private
-  def authorized?
-    unless current_user.usertype == 'customer'
-      redirect_to root_path
-    end
-  end
+
 
   def addresses_params
     params.require(:address).permit(:city, :state, :zip_code, :address, :phone_number)
