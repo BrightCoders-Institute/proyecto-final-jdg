@@ -22,6 +22,13 @@
 
         <div class="container text-center d-flex justify-content-end gap-4">
           <div class="row">
+            <% if user_signed_in? %>
+              <%= link_to 'SIGN OUT', destroy_user_session_path, class: 'btn btn-secondary', data: { turbo_method: :delete } %>
+            <% else %>
+              <%= link_to "LOGIN" , user_session_path, class: 'btn btn-dark' %>
+            <% end %>
+          </div>
+          <div class="row">
             <div class="col">
               <i class="fa-solid fa-magnifying-glass color-icon"></i>
             </div>
