@@ -1,7 +1,8 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: %i[edit update destroy]
   def index
-    @addresses = Address.all
+    @addresses = current_user.address
+    redirect_to root_path unless @addresses
   end
 
   def new
