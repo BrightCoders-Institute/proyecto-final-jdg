@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def authorized?
     unless current_user.usertype == 'customer'
-      redirect_to root_path
+      redirect_to products_path
     end
   end
   
