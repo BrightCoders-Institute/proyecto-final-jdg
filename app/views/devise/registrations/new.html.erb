@@ -34,13 +34,13 @@
                   <% if @minimum_password_length %>
                     <em>(<%= @minimum_password_length %> characters minimum)</em>
                   <% end %>
-                  <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+                  <%= f.password_field :password, required: true, class: "form-control", autocomplete: "new-password" %>
                 </div>
                 
                 <!-- Password Confirmation -->
                 <div class="mb-3 col-lg-9">
                   <%= f.label :password_confirmation, class: "form-label" %>
-                  <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+                  <%= f.password_field :password_confirmation, required: true, class: "form-control", autocomplete: "new-password" %>
                 </div>
                 
                 <!-- Submit Button -->
