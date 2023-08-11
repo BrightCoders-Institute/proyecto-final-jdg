@@ -21,7 +21,11 @@
 
   <p>
     <strong>Image:</strong>
-    <%= image_tag rails_blob_path(product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+    <% if product.image.attached? %>
+      <%= image_tag rails_blob_path(product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+    <% else %>
+      No Image
+    <% end %>
   </p>
 
   <p>
