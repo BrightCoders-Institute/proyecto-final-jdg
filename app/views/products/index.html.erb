@@ -1,15 +1,13 @@
-<p style="color: green" class="text-center mt-3"><%= notice %></p>
-
 <div class="container">
   <div class="row text-center">
     <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Products</h1>
   </div>
 
-  <div id="products">
+  <div id="products" class="table-responsive">
     <table class="table table-hover text-center">
       <thead>
-        <tr>
-          <th>Image</th>
+        <tr class="d-none d-md-table-row">
+          <th></th>
           <th>Name</th>
           <th>Description</th>
           <th>Product Type</th>
@@ -32,5 +30,4 @@
   <div class="text-center my-3">
     <%= link_to "New product", new_product_path, class: "btn custom-button text-uppercase fw-bold" %>
   </div>
-
 </div>
