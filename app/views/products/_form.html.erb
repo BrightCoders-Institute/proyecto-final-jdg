@@ -11,49 +11,49 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="my-3">
+    <%= form.label :name, style: "display: block " %>
+    <%= form.text_field :name, class: "w-100 form-control" %>
   </div>
 
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: "w-100 form-control" %>
   </div>
 
-  <div>
+  <div class="my-3">
     <%= form.label :product_type, style: "display: block" %>
-    <%= form.text_field :product_type %>
+    <%= form.text_field :product_type, class: "w-100 form-control" %>
   </div>
 
   <div>
     <%= form.label :brand, style: "display: block" %>
-    <%= form.text_field :brand %>
+    <%= form.text_field :brand, class: "w-100 form-control" %>
   </div>
 
-  <div>
+  <div class="my-3">
     <%= form.label :image, class:"form-label mb-2" %>
     <%= form.file_field :image, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :size, style: "display: block" %>
-    <%= form.text_field :size %>
+    <%= form.text_field :size, class: "w-100 form-control" %>
   </div>
 
-  <div>
+  <div class="my-3">
     <%= form.label :base_price, style: "display: block" %>
-    <%= form.text_field :base_price %>
+    <%= form.text_field :base_price, class: "w-100 form-control" %>
   </div>
 
   <div>
     <%= form.label :discount, style: "display: block" %>
-    <%= form.text_field :discount %>
+    <%= form.text_field :discount, class: "w-100 form-control" %>
   </div>
 
-  <div>
+  <div class="my-3">
     <%= form.label :total_price, style: "display: block" %>
-    <%= form.text_field :total_price %>
+    <%= form.text_field :total_price, class: "w-100 form-control" %>
   </div>
 
   <div>
@@ -61,12 +61,12 @@
     <%= form.number_field :stock %>
   </div>
 
-  <div>
+  <div class="my-3">
     <%= form.label :availability, style: "display: block" %>
     <%= form.check_box :availability %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="text-center">
+    <%= form.submit class: "btn btn-login text-uppercase fw-bold my-3 " %>
   </div>
 <% end %>
