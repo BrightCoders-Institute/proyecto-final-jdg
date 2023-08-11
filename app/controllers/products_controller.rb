@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :admin?, only: %i[index edit update destroy create new]
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json

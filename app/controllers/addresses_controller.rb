@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :authorized?, only: %i[index edit update destroy create new]
+  before_action :customer?, only: %i[index edit update destroy create new]
   before_action :set_address, only: %i[edit update destroy]
   def index
     @addresses = current_user.address
