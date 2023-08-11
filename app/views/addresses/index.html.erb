@@ -1,40 +1,55 @@
-<h1>Address List</h1>
-<%= link_to 'New Address' , new_address_path %>
-<table>
-  <thead>
-    <tr>
-      <th>City</th>
-      <th>State</th>
-      <th>ZIP Code</th>
-      <th>Address</th>
-      <th>Phone Number</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @addresses.each do |address| %>
-      <tr>
-        <td>
-          <%= address.city %>
-        </td>
-        <td>
-          <%= address.state %>
-        </td>
-        <td>
-          <%= address.zip_code %>
-        </td>
-        <td>
-          <%= address.address %>
-        </td>
-        <td>
-          <%= address.phone_number %>
-        </td>
-        <td>
-          <%= link_to "Edit", edit_address_path(address) %>
-          <%= link_to "Delete", address_path(address), method: :delete, data: { turbo_method: :delete,
-            turbo_confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="text-center">
+    <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Address List</h1>
+  </div>
+
+  <div class="my-5">
+    <%= link_to 'New Address', new_address_path, class: "btn btn-login text-uppercase fw-bold"  %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover text-center mb-5">
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>State</th>
+          <th>ZIP Code</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td class="align-middle">
+              <%= address.city %>
+            </td>
+            <td class="align-middle">
+              <%= address.state %>
+            </td>
+            <td class="align-middle">
+              <%= address.zip_code %>
+            </td>
+            <td class="align-middle">
+              <%= address.address %>
+            </td>
+            <td class="align-middle">
+              <%= address.phone_number %>
+            </td>
+            <td class="align-middle">
+              <div class="btn-group">
+                <%= link_to edit_address_path(address), class: "btn btn-primary" do %>
+                  <i class="fas fa-edit"></i> Edit
+                <% end %>
+                <%= link_to address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" do %>
+                  <i class="fas fa-trash"></i> Delete
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
