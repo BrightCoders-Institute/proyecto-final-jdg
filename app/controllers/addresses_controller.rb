@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  before_action :customer?, only: %i[index edit update destroy create new]
   before_action :set_address, only: %i[edit update destroy]
   def index
     @addresses = current_user.address
@@ -34,6 +35,8 @@ class AddressesController < ApplicationController
   end
 
   private
+
+
   def addresses_params
     params.require(:address).permit(:city, :state, :zip_code, :address, :phone_number)
   end
