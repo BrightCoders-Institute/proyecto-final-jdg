@@ -8,9 +8,9 @@
   </div>
 
   <div class="table-responsive">
-    <table class="table table-hover text-center mb-5">
+    <table class="table table-hover mb-5">
       <thead>
-        <tr>
+        <tr class="d-none d-md-table-row">
           <th>City</th>
           <th>State</th>
           <th>ZIP Code</th>
@@ -22,23 +22,38 @@
       <tbody>
         <% @addresses.each do |address| %>
           <tr>
-            <td class="align-middle">
+            <td class="d-none d-md-table-cell">
               <%= address.city %>
             </td>
-            <td class="align-middle">
+            <td class="d-none d-md-table-cell">
               <%= address.state %>
             </td>
-            <td class="align-middle">
+            <td class="d-none d-md-table-cell">
               <%= address.zip_code %>
             </td>
-            <td class="align-middle">
+            <td class="d-none d-md-table-cell">
               <%= address.address %>
             </td>
-            <td class="align-middle">
+            <td class="d-none d-md-table-cell">
               <%= address.phone_number %>
             </td>
-            <td class="align-middle">
+            <td class="d-none d-md-table-cell">
               <div class="btn-group">
+                <%= link_to edit_address_path(address), class: "btn btn-primary" do %>
+                  <i class="fas fa-edit"></i> Edit
+                <% end %>
+                <%= link_to address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" do %>
+                  <i class="fas fa-trash"></i> Delete
+                <% end %>
+              </div>
+            </td>
+            <td class="d-table-cell d-md-none" colspan="2">
+              <strong>City:</strong> <%= address.city %><br>
+              <strong>State:</strong> <%= address.state %><br>
+              <strong>ZIP Code:</strong> <%= address.zip_code %><br>
+              <strong>Address:</strong> <%= address.address %><br>
+              <strong>Phone Number:</strong> <%= address.phone_number %><br>
+              <div class="btn-group mt-2">
                 <%= link_to edit_address_path(address), class: "btn btn-primary" do %>
                   <i class="fas fa-edit"></i> Edit
                 <% end %>
