@@ -1,10 +1,76 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green" class="text-center mt-3"><%= notice %></p>
 
-<%= render @product %>
+<div class="container">
+  <div class="row text-center">
+    <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Product Details</h1>
+  </div>
 
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
+  <div class="row col-10 offset-1">
+    <table class="table table-bordered text-center ">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="align-middle">Image</td>
+          <td>
+            <% if @product.image.attached? %>
+              <%= image_tag rails_blob_path(@product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+            <% else %>
+              No Image
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle" class="align-middle">Name</td>
+          <td><%= @product.name %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Description</td>
+          <td><%= @product.description %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Product Type</td>
+          <td><%= @product.product_type %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Brand</td>
+          <td><%= @product.brand %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Size</td>
+          <td><%= @product.size %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Base Price</td>
+          <td><%= @product.base_price %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Discount</td>
+          <td><%= @product.discount %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Total Price</td>
+          <td><%= @product.total_price %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Stock</td>
+          <td><%= @product.stock %></td>
+        </tr>
+        <tr>
+          <td class="align-middle">Availability</td>
+          <td><%= @product.availability %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="text-center my-5">
+    <%= link_to "Edit this product", edit_product_path(@product), class: "btn custom-button  text-uppercase fw-bold mx-md-3" %> |
+    <%= link_to "Back to products", products_path, class: "btn btn-secondary text-uppercase fw-bold mx-md-3" %>
 
-  <%= button_to "Destroy this product", @product, method: :delete %>
+    <%= button_to "Destroy this product", @product, method: :delete, class: "btn btn-danger my-3 text-uppercase fw-bold" %>
+  </div>
 </div>

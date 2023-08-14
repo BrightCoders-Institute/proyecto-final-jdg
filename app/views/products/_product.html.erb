@@ -1,61 +1,75 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= product.description %>
-  </p>
-
-  <p>
-    <strong>Product type:</strong>
-    <%= product.product_type %>
-  </p>
-
-  <p>
-    <strong>Brand:</strong>
-    <%= product.brand %>
-  </p>
-
-  <p>
-    <strong>Image:</strong>
+<!-- Versión para vista móvil (vertical) -->
+<tr class="d-md-none">
+  <td colspan="2" class="align-middle">
     <% if product.image.attached? %>
       <%= image_tag rails_blob_path(product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
     <% else %>
       No Image
     <% end %>
-  </p>
+  </td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Name:</strong></td>
+  <td class="align-middle"><%= product.name %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Description:</strong></td>
+  <td class="align-middle"><%= product.description %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Product type:</strong></td>
+  <td class="align-middle"><%= product.product_type %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Brand:</strong></td>
+  <td class="align-middle"><%= product.brand %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Size:</strong></td>
+  <td class="align-middle"><%= product.size %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Base price:</strong></td>
+  <td class="align-middle"><%= product.base_price %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Discount:</strong></td>
+  <td class="align-middle"><%= product.discount %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Total price:</strong></td>
+  <td class="align-middle"><%= product.total_price %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Stock:</strong></td>
+  <td class="align-middle"><%= product.stock %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Availability:</strong></td>
+  <td class="align-middle"><%= product.availability %></td>
+</tr>
+<tr class="d-md-none">
+  <td colspan="2" class="align-middle"><%= link_to "Show", product %></td>
+</tr>
 
-  <p>
-    <strong>Size:</strong>
-    <%= product.size %>
-  </p>
-
-  <p>
-    <strong>Base price:</strong>
-    <%= product.base_price %>
-  </p>
-
-  <p>
-    <strong>Discount:</strong>
-    <%= product.discount %>
-  </p>
-
-  <p>
-    <strong>Total price:</strong>
-    <%= product.total_price %>
-  </p>
-
-  <p>
-    <strong>Stock:</strong>
-    <%= product.stock %>
-  </p>
-
-  <p>
-    <strong>Availability:</strong>
-    <%= product.availability %>
-  </p>
-
-</div>
+<!-- Versión para vista de escritorio (horizontal) -->
+<tr class="d-none d-md-table-row">
+  <td>
+    <% if product.image.attached? %>
+      <%= image_tag rails_blob_path(product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+    <% else %>
+      No Image
+    <% end %>
+  </td>
+  <td class="align-middle"><%= product.name %></td>
+  <td class="align-middle"><%= product.description %></td>
+  <td class="align-middle"><%= product.product_type %></td>
+  <td class="align-middle"><%= product.brand %></td>
+  <td class="align-middle"><%= product.size %></td>
+  <td class="align-middle"><%= product.base_price %></td>
+  <td class="align-middle"><%= product.discount %></td>
+  <td class="align-middle"><%= product.total_price %></td>
+  <td class="align-middle"><%= product.stock %></td>
+  <td class="align-middle"><%= product.availability %></td>
+  <td class="align-middle"><%= link_to "Show", product %></td>
+</tr>
