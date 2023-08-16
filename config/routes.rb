@@ -10,4 +10,13 @@ Rails.application.routes.draw do
 
   resources :addresses
 
+  resources :products do
+    member do
+      post 'add_to_cart'
+      get 'cart'
+    end
+  end
+  
+  resource :cart, only: :show
+
 end

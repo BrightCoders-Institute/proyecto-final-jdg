@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_many :address
+  has_one :cart 
   self.inheritance_column = :type
 
   validates :first_name, :last_name, presence: true

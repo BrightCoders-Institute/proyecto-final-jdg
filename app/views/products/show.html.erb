@@ -1,5 +1,8 @@
 <p style="color: green" class="text-center mt-3"><%= notice %></p>
-
+<%= form_tag add_to_cart_product_path(@product), method: :post do %>
+  <%= submit_tag 'Add to Cart', class: 'btn btn-primary' %>
+<% end %>
+<%= link_to 'View Cart', cart_product_path(@product), class: 'btn btn-success' %>
 <div class="container">
   <div class="row text-center">
     <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Product Details</h1>
@@ -67,6 +70,14 @@
       </tbody>
     </table>
   </div>
+  <% if @cart %>
+    <% @cart.line_items.each do |line_item| %>
+      <%= line_item.product.name %> - <%= line_item.quantity %>
+    <% end %>
+  <% else %>
+    <p>Your cart is empty.</p>
+  <% end %>
+
   <div class="text-center my-5">
     <% if current_user.usertype == 'admin' %>
     <%= link_to "Edit this product", edit_product_path(@product), class: "btn custom-button  text-uppercase fw-bold mx-md-3" %> |
