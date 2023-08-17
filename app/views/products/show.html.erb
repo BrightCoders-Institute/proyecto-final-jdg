@@ -70,13 +70,14 @@
       </tbody>
     </table>
   </div>
-  <% if @cart %>
+  <!-- <% if @cart %>
     <% @cart.line_items.each do |line_item| %>
       <%= line_item.product.name %> - <%= line_item.quantity %>
     <% end %>
+
   <% else %>
     <p>Your cart is empty.</p>
-  <% end %>
+  <% end %> -->
 
   <div class="text-center my-5">
     <% if current_user.usertype == 'admin' %>

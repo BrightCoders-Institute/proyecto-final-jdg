@@ -8,15 +8,14 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :addresses
+  resources :addresses, :carts
 
   resources :products do
     member do
       post 'add_to_cart'
-      get 'cart'
     end
   end
   
-  resource :cart, only: :show
+  resource :carts, only: :show
 
 end
