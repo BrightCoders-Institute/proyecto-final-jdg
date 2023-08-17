@@ -13,9 +13,9 @@
   </head>
 
   <body>
-    <%= render partial: "partials/components/top-message" %>
-    <%= render partial: "partials/layout/navbar" %>
+    <%= render partial: "partials/components/top-message" unless devise_controller? %>
+    <%= render partial: "partials/layout/navbar" unless devise_controller? %>
     <%= yield %>
-    <%= render partial: "partials/layout/footer" %>
+    <%= render partial: "partials/layout/footer" unless devise_controller? %>
   </body>
 </html>

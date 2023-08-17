@@ -28,7 +28,13 @@
           <% unless params[:controller] == "devise/passwords" && params[:action] == "new" || params[:controller] == "devise/registrations" && params[:action] == "new" %>
             <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Sign in</button>
           <% end %>
+
+            <div class="text-left mt-3">
+          <%- if controller_name != 'sessions' %>
+            <%= link_to "Log in", new_session_path(resource_name), class: "text-orange" %><br />
+          <% end %>
           <%= render "devise/shared/links" %>
+        </div>
         </div>
       <% end %>
     </div>
