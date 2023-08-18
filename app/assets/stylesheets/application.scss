@@ -15,3 +15,35 @@
 body {
   font-family: $font-family-main;
  }
+
+.product {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+.product img {
+  height: 400px;
+  max-width: 100%;
+}
+
+.product h2 {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+.welcome-banner {
+  align-content: center;
+  background-image: image_url('welcome-banner.webp');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: grid;
+  justify-content: center;
+  height: 600px;
+}
+
+.welcome-banner h1 {
+  background-color: white;
+  color: $black-background;
+}

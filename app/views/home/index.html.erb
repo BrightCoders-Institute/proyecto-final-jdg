@@ -1,0 +1,18 @@
+<%= render partial: "partials/components/welcome-banner" %>
+
+<div class="container">
+  <h1 class="my-5 login-heading fw-medium fs-1 fw-light text-center">NEW PRODUCTS</h1>
+  <div class="row mb-5">
+    <% @products.each do |product| %>
+      <div class="col-md-3">
+        <div class="product">
+          <%= link_to product_path(product), class: "text-decoration-none text-black" do %>
+            <%= image_tag(product.image, alt: product.name, class: "img-fluid") %>
+            <h2><%= product.name %></h2>
+            <p><%= number_to_currency(product.base_price) %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
