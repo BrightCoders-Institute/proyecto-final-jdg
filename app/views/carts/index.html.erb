@@ -25,9 +25,10 @@
           <% end %>
       </tbody>
     </table>
-
     <p class="text-end">Total Price: <%= number_to_currency(@total_price) %>
     </p>
+    <%= link_to 'Proceed to Checkout', checkout_path, method: :post, class: 'btn btn-primary' %>
+
     <% else %>
       <p>Your cart is empty.</p>
       <% end %>

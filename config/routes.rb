@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+  get 'orders/show'
   resources :products
   devise_for :users
 
@@ -17,5 +19,8 @@ Rails.application.routes.draw do
   end
   
   resource :carts, only: :show
+
+  resources :orders, only: [:index, :show]
+  post 'carts/checkout', to: 'carts#checkout', as: 'checkout'
 
 end
