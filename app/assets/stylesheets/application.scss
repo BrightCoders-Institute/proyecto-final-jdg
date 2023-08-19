@@ -11,9 +11,58 @@
  "components/registrations.scss",
  "components/passwords.scss",
  "components/banner.scss",
+ "components/products.scss",
  "layout/footer.scss",
  "layout/navbar.scss";
 
 body {
   font-family: $font-family-main;
  }
+
+ // **PRODUCTS DESIGN **//
+ .card-design{
+  border: none;
+  cursor: pointer;
+ }
+
+ .card-design img:hover{
+  transform: scale(1.2);
+  transition: transform 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+ }
+
+ .button-cart{
+  background-color: $black-background;
+  color: #fff;
+  
+  border: none;
+  width: 100%;
+  text-align: center;
+ }
+
+ .button-cart:hover{
+  background-color: $brand-color-yellow;
+  color: $black-background;
+ }
+
+ .button-design-products{
+  color: #000000;
+  background-color: transparent;
+  width: 200px;
+  border: none;
+ }
+
+ .button-design-products:hover{
+  color: #000000;
+  background-color: transparent;
+  text-decoration: underline;
+ }
+
+
+ @media (max-width: 767px) {
+  .grid-design{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+ // **END**//
