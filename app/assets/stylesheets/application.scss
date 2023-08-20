@@ -1,5 +1,6 @@
  @import "font-awesome";
  @import "bootstrap";
+ @import "jquery-ui.css";
 
  @import
  "config/variables.scss",
@@ -19,6 +20,30 @@ body {
   font-family: $font-family-main;
  }
 
+ .top-message-size {
+  background-color: $black-background;
+  font-size: .9rem;
+  letter-spacing: 0.05rem;
+  margin-bottom: 187px;
+  position: relative; /* Agrega esta línea */
+  z-index: 200;
+}
+
+
+ // ** Navbar design **//
+#navbar {
+    display: block;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 21.6px;
+    transition: top 0.3s; /* Adjust this value based on your navbar's height */
+    width: 100%;
+    z-index: 100;
+    /* Add other styling properties as needed */
+}
+ // **END**//
+
  // **PRODUCTS DESIGN **//
  .card-design{
   border: none;
@@ -32,8 +57,7 @@ body {
 
  .button-cart{
   background-color: $black-background;
-  color: #fff;
-  
+  color: $white-background;
   border: none;
   width: 100%;
   text-align: center;
@@ -45,15 +69,15 @@ body {
  }
 
  .button-design-products{
-  color: #000000;
   background-color: transparent;
-  width: 200px;
   border: none;
+  color: $black-background;
+  width: 200px;
  }
 
  .button-design-products:hover{
-  color: #000000;
   background-color: transparent;
+  color: $black-background;
   text-decoration: underline;
  }
 
@@ -66,3 +90,4 @@ body {
 }
 
  // **END**//
+ 

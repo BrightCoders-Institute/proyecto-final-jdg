@@ -83,3 +83,9 @@ gem "sassc-rails"
 
 #font awesome
 gem "font-awesome-sass", "~> 6.4.0"
+
+# Use jquery as the JavaScript librar
+gem 'jquery-rails'
+
+# Use jquery-ui for pretty UI
+gem 'jquery-ui-rails'
