@@ -22,16 +22,14 @@
             </td>
             <td><%= line_item.product.total_price %></td>
           </tr>
-          <% end %>
+        <% end %>
       </tbody>
     </table>
-    <p class="text-end">Total Price: <%= number_to_currency(@total_price) %>
-    </p>
+    <p class="text-end">Total Price: <%= number_to_currency(@total_price) %></p>
     <%= link_to 'Proceed to Checkout', checkout_path, method: :post, class: 'btn btn-primary' %>
+  <% else %>
+    <p>Your cart is empty.</p>
+  <% end %>
 
-    <% else %>
-      <p>Your cart is empty.</p>
-      <% end %>
-
-        <%= link_to 'Continue Shopping' , products_path, class: 'btn btn-primary' %>
+  <%= link_to 'Continue Shopping', products_path, class: 'btn btn-primary' %>
 </div>

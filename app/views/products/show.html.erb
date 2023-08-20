@@ -69,15 +69,7 @@
       </tbody>
     </table>
   </div>
-  <!-- <% if @cart %>
-    <% @cart.line_items.each do |line_item| %>
-      <%= line_item.product.name %> - <%= line_item.quantity %>
-    <% end %>
-
-  <% else %>
-    <p>Your cart is empty.</p>
-  <% end %> -->
-
+  
   <div class="text-center my-5">
     <% if current_user.usertype == 'admin' %>
     <%= link_to "Edit this product", edit_product_path(@product), class: "btn custom-button  text-uppercase fw-bold mx-md-3" %> |
