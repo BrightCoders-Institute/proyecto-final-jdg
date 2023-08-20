@@ -2,26 +2,6 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_common_data, only: [:show, :checkout, :index]
 
-  def show
-    @total_price = @cart.line_items.sum { |line_item| line_item.product.total_price * line_item.quantity }
-    
-    if request.post?
-      selected_address = Address.find(params[:address_id])
-      order = current_user.orders.create(address: selected_address, total_price: @total_price)
-      
-      @cart.line_items.each do |line_item|
-        order.order_items.create(
-          product: line_item.product,
-          quantity: line_item.quantity,
-          price: line_item.product.total_price
-        )
-      end
-      
-      @cart.destroy
-      redirect_to orders_path, notice: 'Order placed successfully.'
-    end
-  end
-
   def add_to_cart
     @product = Product.find(params[:id])
     @cart = current_user.cart || current_user.create_cart
