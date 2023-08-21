@@ -45,6 +45,7 @@ class CartsController < ApplicationController
     @total_price = @line_items.sum { |line_item| line_item.product.total_price * line_item.quantity } if @line_items
   end
 
+  private
   def load_common_data
     @cart = current_user.cart 
     @address_options = current_user.addresses
