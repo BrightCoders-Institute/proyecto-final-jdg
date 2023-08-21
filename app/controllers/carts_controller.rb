@@ -46,6 +46,7 @@ class CartsController < ApplicationController
   end
 
   private
+  
   def load_common_data
     @cart = current_user.cart 
     @address_options = current_user.addresses
