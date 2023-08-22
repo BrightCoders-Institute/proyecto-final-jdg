@@ -44,6 +44,7 @@
             <div class="col">
               <i class="fa-solid fa-magnifying-glass color-icon"></i>
             </div>
+            <% if user_signed_in? %>
             <div class="col">
               <% if user_signed_in? %>
                 <%= link_to '', addresses_path, class: "fa-solid fa-user color-icon" %>
@@ -51,8 +52,9 @@
                 <%= link_to '',  user_session_path, class: "fa-solid fa-user color-icon" %>
               <% end %>
             </div>
+            <% end %>
             <div class="col">
-             <i class="fa-solid fa-bag-shopping color-icon"></i>
+             <%= link_to '', carts_path, class: "fa-solid fa-bag-shopping color-icon" %>
             </div>
           </div>
         </div>

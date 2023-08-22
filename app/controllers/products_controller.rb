@@ -1,6 +1,32 @@
 class ProductsController < ApplicationController
-  before_action :admin?, only: %i[index edit update destroy create new]
+  before_action :admin?, only: %i[ edit update destroy create new]
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+
+  def add_to_cart
+    @product = Product.find(params[:id])
+    @cart = current_user.cart || current_user.create_cart
+
+    line_item = @cart.line_items.find_by(product: @product)
+
+    if line_item
+      line_item.quantity += 1
+    else
+      line_item = @cart.line_items.build(product: @product, quantity: 1)
+    end
+
+    if line_item.save
+      redirect_to carts_path, notice: 'Product added to cart.'
+    else
+      redirect_to @product, alert: 'Failed to add product to cart.'
+    end
+  end
+
+  def cart
+    @cart = current_user.cart
+    @line_items = @cart.line_items.includes(:product) if @cart
+    @total_price = @line_items.sum { |line_item| line_item.product.total_price * line_item.quantity } if @line_items
+  end
 
   # GET /products or /products.json
   def index
@@ -58,14 +84,17 @@ class ProductsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
+  
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:name, :description, :product_type, :brand, :image, :size, :base_price, :discount, :total_price, :stock, :availability)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:name, :description, :product_type, :brand, :image, :size, :base_price, :discount, :total_price, :stock, :availability)
+  end
 end

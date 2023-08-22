@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   before_action :customer?, only: %i[index edit update destroy create new]
   before_action :set_address, only: %i[edit update destroy]
   def index
-    @addresses = current_user.address
+    @addresses = current_user.addresses
     redirect_to root_path unless @addresses
   end
 
@@ -11,13 +11,14 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = current_user.address.build(addresses_params)
+    @address = current_user.addresses.build(addresses_params)
     if @address.save
       redirect_to addresses_path
     else
       render :new, status: :unprocessable_entity
     end
   end
+  
 
   def edit; end
 
