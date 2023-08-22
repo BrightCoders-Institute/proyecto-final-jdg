@@ -1,5 +1,5 @@
-<div class="container-flouid">
-  <nav class="navbar navbar-expand-lg bg-light shadow-sm p-3 bg-body-tertiary rounded">
+<div class="container-flouid" id="navbar">
+  <nav class="navbar navbar-expand-lg bg-light shadow-sm p-3 bg-body-tertiary rounded" >
     <div class="container">
       <a class="navbar-brand" href="/">
       <%= image_tag("monkeyHats.webp", class: "rounded-circle logo-size mx-auto") %>
@@ -11,11 +11,19 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <li class="nav-item underline">
-            <a class="nav-link active " aria-current="page" href="#">Home</a>
+            <%= link_to 'Home', root_path, class: "nav-link#{' active' if current_page?(root_path)}" %>
           </li>
 
           <li class="nav-item underline">
-            <a class="nav-link" href="#">Products</a>
+             <%= link_to 'Products', products_path, class: "nav-link#{' active' if current_page?(products_path)}" %>
+          </li>
+
+          <li class="nav-item underline">
+            <%= link_to 'About', about_index_path, class: "nav-link#{' active' if current_page?(about_index_path)}" %>
+          </li>
+
+          <li class="nav-item underline">
+             <%= link_to 'FAQs', faqs_index_path, class: "nav-link#{' active' if current_page?(faqs_index_path)}" %>
           </li>
 
         </ul>
@@ -23,9 +31,13 @@
         <div class="container text-center d-flex justify-content-end gap-4">
           <div class="row">
             <% if user_signed_in? %>
-              <%= link_to "SIGN OUT", destroy_user_session_path, class: "btn btn-secondary", data: { turbo_method: :delete } %>
+              <%= link_to destroy_user_session_path, class: "btn btn-secondary d-flex align-items-center", data: { turbo_method: :delete } do %>
+                <i class="fa-solid fa-sign-out-alt"></i>
+              <% end %>
             <% else %>
-              <%= link_to "LOGIN" , user_session_path, class: "btn btn-dark" %>
+              <%= link_to user_session_path, class: "btn btn-dark d-flex align-items-center" do %>
+                <i class="fa-solid fa-sign-in-alt"></i>
+              <% end %>
             <% end %>
           </div>
           <div class="row">
@@ -34,7 +46,11 @@
             </div>
             <% if user_signed_in? %>
             <div class="col">
-              <%= link_to '' , addresses_path , class: "fa-solid fa-user color-icon" %>
+              <% if user_signed_in? %>
+                <%= link_to '', addresses_path, class: "fa-solid fa-user color-icon" %>
+              <% else %>
+                <%= link_to '',  user_session_path, class: "fa-solid fa-user color-icon" %>
+              <% end %>
             </div>
             <% end %>
             <div class="col">

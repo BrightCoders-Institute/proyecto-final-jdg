@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+
+  get 'faqs/index'
+  get 'about/index'
+
   get 'orders/index'
   get 'orders/show'
+
   resources :products
   devise_for :users
 
