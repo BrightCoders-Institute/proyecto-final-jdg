@@ -1,5 +1,7 @@
 <p style="color: green" class="text-center mt-3"><%= notice %></p>
-
+<%= form_tag add_to_cart_product_path(@product), method: :post do %>
+  <%= submit_tag 'Add to Cart', class: 'btn btn-primary' %>
+<% end %>
 <div class="container">
   <div class="row text-center">
     <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Product Details</h1>
@@ -67,10 +69,13 @@
       </tbody>
     </table>
   </div>
+  
   <div class="text-center my-5">
+    <% if current_user.usertype == 'admin' %>
     <%= link_to "Edit this product", edit_product_path(@product), class: "btn custom-button  text-uppercase fw-bold mx-md-3" %> |
-    <%= link_to "Back to products", products_path, class: "btn btn-secondary text-uppercase fw-bold mx-md-3" %>
-
     <%= button_to "Destroy this product", @product, method: :delete, class: "btn btn-danger my-3 text-uppercase fw-bold" %>
+    <% end %>
+    <%= link_to "Back to products", products_path, class: "btn btn-secondary text-uppercase fw-bold mx-md-3" %>
+  
   </div>
 </div>
