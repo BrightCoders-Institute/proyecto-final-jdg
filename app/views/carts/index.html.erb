@@ -1,4 +1,3 @@
-<!-- app/views/products/cart.html.erb -->
 <div class="container">
   <h1 class="my-5 text-center">Your Cart</h1>
 
@@ -9,7 +8,6 @@
           <th>Product</th>
           <th>Quantity</th>
           <th>Price</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -22,7 +20,11 @@
               <%= line_item.quantity %>
             </td>
             <td><%= line_item.product.total_price %></td>
-            <td><%= button_to "Destroy this product", cart_path(@cart.line_item.id), method: :delete, class: "btn btn-danger my-3 text-uppercase fw-bold" %></td>
+            <td>
+              <%= form_with url: remove_product_cart_path(@cart, line_item), method: :delete, data: { confirm: 'Are you sure you want to remove this product from the cart?' } do |form| %>
+                <%= form.submit 'Remove', class: 'btn btn-danger btn-sm' %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

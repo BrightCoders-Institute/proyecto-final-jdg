@@ -1,8 +1,8 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :cart?, only: :show
-  before_action :find_product, only: %i[add_to_cart remove_from_cart]
-  before_action :load_common_data, only: %i[show checkout index remove_from_cart]
+  before_action :find_product, only: %i[add_to_cart]
+  before_action :load_common_data, only: %i[show checkout index ]
 
   def add_to_cart
     @cart = current_user.cart || current_user.create_cart
@@ -21,9 +21,16 @@ class CartsController < ApplicationController
     end
   end
 
-  def remove_from_cart
-    @cart.line_item.destroy
+  def remove_product
+    @line_item = LineItem.find(params[:line_item_id])
+
+    if @line_item.destroy
+      redirect_to carts_path, notice: 'Product removed from cart.'
+    else
+      redirect_to carts_path, alert: 'Failed to remove product from cart.'
+    end
   end
+
 
   def checkout
     @total_price = @cart.line_items.sum { |line_item| line_item.product.total_price * line_item.quantity }

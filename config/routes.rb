@@ -23,7 +23,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resource :carts, only: :show
+  resources :carts do
+    delete 'remove_product/:line_item_id', to: 'carts#remove_product', on: :member, as: :remove_product
+  end
 
   resources :orders, only: [:index, :show]
   post 'carts/checkout', to: 'carts#checkout', as: 'checkout'
