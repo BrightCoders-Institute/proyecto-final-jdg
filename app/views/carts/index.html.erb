@@ -22,7 +22,7 @@
               <%= line_item.quantity %>
             </td>
             <td><%= line_item.product.total_price %></td>
-            <td><%= button_to "Destroy this product", @product, method: :delete, class: "btn btn-danger my-3 text-uppercase fw-bold" %></td>
+            <td><%= button_to "Destroy this product", cart_path(@cart.line_item.id), method: :delete, class: "btn btn-danger my-3 text-uppercase fw-bold" %></td>
           </tr>
         <% end %>
       </tbody>

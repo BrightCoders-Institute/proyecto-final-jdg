@@ -32,17 +32,15 @@
         <div class="container text-center d-flex justify-content-end gap-4">
           <div class="row">
             <% if user_signed_in? %>
-              <%= link_to destroy_user_session_path, method: :delete,
-                class: "btn btn-secondary d-flex align-items-center" , data: { turbo: true } do %>
-                <i class="fa-solid fa-sign-out-alt"></i>
-                SIGN OUT
-                <% end %>
-                  <% else %>
-                    <%= link_to new_user_session_path, class: "btn btn-dark d-flex align-items-center" do %>
-                      <i class="fa-solid fa-sign-in-alt"></i>
-                      SIGN IN
+            <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-secondary d-flex align-items-center" do %>
+            <i class="fa-solid fa-sign-out-alt me-2"></i> SIGN OUT
+            <% end %>
+                <% else %>
+                  <%= link_to new_user_session_path, class: "btn btn-dark d-flex align-items-center" do %>
+                    <i class="fa-solid fa-sign-in-alt"></i>
+                    SIGN IN
+                    <% end %>
                       <% end %>
-                        <% end %>
 
           </div>
           <div class="row">
