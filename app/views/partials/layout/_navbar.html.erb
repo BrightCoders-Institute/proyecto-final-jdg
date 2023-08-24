@@ -1,29 +1,30 @@
 <div class="container-flouid" id="navbar">
-  <nav class="navbar navbar-expand-lg bg-light shadow-sm p-3 bg-body-tertiary rounded" >
+  <nav class="navbar navbar-expand-lg bg-light shadow-sm p-3 bg-body-tertiary rounded">
     <div class="container">
       <a class="navbar-brand" href="/">
-      <%= image_tag("monkeyHats.webp", class: "rounded-circle logo-size mx-auto") %>
+        <%= image_tag("monkeyHats.webp", class: "rounded-circle logo-size mx-auto" ) %>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse ms-4" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <li class="nav-item underline">
-            <%= link_to 'Home', root_path, class: "nav-link#{' active' if current_page?(root_path)}" %>
+            <%= link_to 'Home' , root_path, class: "nav-link#{' active' if current_page?(root_path)}" %>
           </li>
 
           <li class="nav-item underline">
-             <%= link_to 'Products', products_path, class: "nav-link#{' active' if current_page?(products_path)}" %>
+            <%= link_to 'Products' , products_path, class: "nav-link#{' active' if current_page?(products_path)}" %>
           </li>
 
           <li class="nav-item underline">
-            <%= link_to 'About', about_index_path, class: "nav-link#{' active' if current_page?(about_index_path)}" %>
+            <%= link_to 'About' , about_index_path, class: "nav-link#{' active' if current_page?(about_index_path)}" %>
           </li>
 
           <li class="nav-item underline">
-             <%= link_to 'FAQs', faqs_index_path, class: "nav-link#{' active' if current_page?(faqs_index_path)}" %>
+            <%= link_to 'FAQs' , faqs_index_path, class: "nav-link#{' active' if current_page?(faqs_index_path)}" %>
           </li>
 
         </ul>
@@ -31,35 +32,37 @@
         <div class="container text-center d-flex justify-content-end gap-4">
           <div class="row">
             <% if user_signed_in? %>
-              <%= link_to destroy_user_session_path, class: "btn btn-secondary d-flex align-items-center", data: { turbo_method: :delete } do %>
-                <i class="fa-solid fa-sign-out-alt"></i>
-              <% end %>
-            <% else %>
-              <%= link_to user_session_path, class: "btn btn-dark d-flex align-items-center" do %>
-                <i class="fa-solid fa-sign-in-alt"></i>
-              <% end %>
+            <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-secondary d-flex align-items-center" do %>
+            <i class="fa-solid fa-sign-out-alt me-2"></i> SIGN OUT
             <% end %>
+                <% else %>
+                  <%= link_to new_user_session_path, class: "btn btn-dark d-flex align-items-center" do %>
+                    <i class="fa-solid fa-sign-in-alt"></i>
+                    SIGN IN
+                    <% end %>
+                      <% end %>
+
           </div>
           <div class="row">
             <div class="col">
               <i class="fa-solid fa-magnifying-glass color-icon"></i>
             </div>
             <% if user_signed_in? %>
-            <div class="col">
-              <% if user_signed_in? %>
-                <%= link_to '', addresses_path, class: "fa-solid fa-user color-icon" %>
-              <% else %>
-                <%= link_to '',  user_session_path, class: "fa-solid fa-user color-icon" %>
+              <div class="col">
+                <% if user_signed_in? %>
+                  <%= link_to '' , addresses_path, class: "fa-solid fa-user color-icon" %>
+                    <% else %>
+                      <%= link_to '' , user_session_path, class: "fa-solid fa-user color-icon" %>
+                        <% end %>
+              </div>
               <% end %>
-            </div>
-            <% end %>
-            <div class="col">
-             <%= link_to '', carts_path, class: "fa-solid fa-bag-shopping color-icon" %>
-            </div>
+                <div class="col">
+                  <%= link_to '' , carts_path, class: "fa-solid fa-bag-shopping color-icon" %>
+                </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
-  </nav>
+</div>
+</nav>
 </div>
