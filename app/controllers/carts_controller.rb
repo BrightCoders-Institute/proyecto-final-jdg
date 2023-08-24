@@ -25,9 +25,9 @@ class CartsController < ApplicationController
     @line_item = LineItem.find(params[:line_item_id])
 
     if @line_item.destroy
-      redirect_to carts_path, notice: 'Product removed from cart.'
+      redirect_to request.referer, notice: 'Product removed from cart.'
     else
-      redirect_to carts_path, alert: 'Failed to remove product from cart.'
+      redirect_to request.referer, alert: 'Failed to remove product from cart.'
     end
   end
 

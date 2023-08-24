@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     end
 
     if line_item.save
-      redirect_to carts_path, notice: 'Product added to cart.'
+      redirect_to products_path, notice: 'Product added to cart.'
     else
       redirect_to @product, alert: 'Failed to add product to cart.'
     end

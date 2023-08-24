@@ -49,6 +49,13 @@
   <td class="align-middle"><%= product.availability %></td>
 </tr>
 <tr class="d-md-none">
+  <td colspan="2" class="align-middle">
+    <%= form_tag add_to_cart_product_path(product), method: :post do %>
+      <%= submit_tag 'Add to Cart', class: 'btn btn-primary btn-sm' %>
+    <% end %>
+  </td>
+</tr>
+<tr class="d-md-none">
   <td colspan="2" class="align-middle"><%= link_to "Show", product %></td>
 </tr>
 
@@ -71,5 +78,10 @@
   <td class="align-middle"><%= product.total_price %></td>
   <td class="align-middle"><%= product.stock %></td>
   <td class="align-middle"><%= product.availability %></td>
+  <td class="align-middle">
+    <%= form_tag add_to_cart_product_path(product), method: :post do %>
+      <%= submit_tag 'Add to Cart', class: 'btn btn-primary' %>
+    <% end %>
+  </td>
   <td class="align-middle"><%= link_to "Show", product %></td>
 </tr>
