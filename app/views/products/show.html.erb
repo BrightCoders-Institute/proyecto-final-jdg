@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row text-center">
+    <p>fdsf</p>
     <% if current_user && current_user.usertype == 'admin' %>
       <!-- Admin content-->
       <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Product Details</h1>
@@ -68,49 +69,56 @@
     <% end %>
   </div>
 
-  <% if current_user && current_user.usertype == 'admin' %>
-    <div class="text-center my-5">
-      <!-- Links and buttons for administrators -->
+  <div class="text-center my-5">
+    <!-- Links and buttons for administrators -->
+      <% if current_user && current_user.usertype == 'admin' %>
       <%= link_to "Edit this product", edit_product_path(@product), class: "btn custom-button text-uppercase fw-bold mx-md-3" %>
       <%= button_to "Destroy this product", @product, method: :delete, class: "btn btn-danger my-3 text-uppercase fw-bold" %>
-    </div>
-  <% else %>
-    <p style="color: green" class="text-center mt-3"><%= notice %></p>
+    <% else %>
+      <p style="color: green" class="text-center mt-3"><%= notice %></p>
 
-    <!-- Customer view-->
-    <div class="container">
-      <div class="row my-5">
-        <div class="col-7 text-center">
-          <% if @product.image.attached? %>
-            <%= image_tag rails_blob_path(@product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "80%" %>
-          <% else %>
-            No Image
-          <% end %>
-        </div>
-        <div class="col-5">
-          <div class="row mb-5">
-            <h1>
-              <%= @product.name %>
-            </h1>
-            <h2>
-              $ <%= @product.total_price %>
-            </h2>
-            <hr>
+      <!-- Customer view-->
+      <div class="container">
+        <div class="row my-5">
+          <div class="col-7 text-center">
+            <% if @product.image.attached? %>
+              <%= image_tag rails_blob_path(@product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "80%" %>
+            <% else %>
+              No Image
+            <% end %>
           </div>
-          <div class="row">
-            <span> <strong>DESCRIPTION: </strong><%= @product.description %></span>
-          </div>
-          <div class="row">
-            <span> <strong>PRODUCT TYPE: </strong><%= @product.product_type %></span>
-          </div>
-          <div class="row">
-            <span>  <strong>BRAND:</strong><%= @product.brand %></span>
-          </div>
-          <div class="row">
-            <span><strong>SIZE: </strong><%= @product.size %></span>
+          <div class="col-5">
+            <div class="row mb-5">
+              <h1>
+                <%= @product.name %>
+              </h1>
+              <h2>
+                $ <%= @product.total_price %>
+              </h2>
+              <hr>
+            </div>
+            <div class="row">
+              <span> <strong>DESCRIPTION: </strong><%= @product.description %></span>
+            </div>
+            <div class="row">
+              <span> <strong>PRODUCT TYPE: </strong><%= @product.product_type %></span>
+            </div>
+            <div class="row">
+              <span>  <strong>BRAND:</strong><%= @product.brand %></span>
+            </div>
+            <div class="row">
+              <span><strong>SIZE: </strong><%= @product.size %></span>
+            </div>
+            <div class=" mt-4">
+              <%= form_tag add_to_cart_product_path(@product), method: :post do %>
+                <%= submit_tag 'Add to Cart', class: 'btn btn-dark col-6' %>
+              <% end %>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+
 </div>
