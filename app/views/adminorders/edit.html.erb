@@ -1,0 +1,47 @@
+<h1>Order Details</h1>
+
+<h2>Customer</h2>
+<%= @order.user.full_name %>
+
+<h2>Shipping Address</h2>
+<%= @order.address.full_address %>
+
+
+<%= form_with model: @order do |f| %>
+  <div class="my-3">
+    <h2><%= f.label :status %></h2>
+    <%= f.select :status, options_for_select(['Pending', 'Processing', 'Completed', 'Cancelled']), {}, class: "w-100 form-control" %>
+  </div>
+  <div class="text-center">
+    <%= f.submit "Update Status", class: "btn btn-login text-uppercase fw-bold my-3" %>
+  </div>
+<% end %>
+<h2>Order Summary:</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |order_item| %>
+      <tr>
+        <td><%= order_item.product.name %></td>
+        <td><%= number_to_currency(order_item.price) %></td>
+        <td><%= order_item.quantity %></td>
+        <td><%= number_to_currency(order_item.price * order_item.quantity) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="3">Total Price:</th>
+      <th><%= number_to_currency(@order.total_price) %></th>
+    </tr>
+  </tfoot>
+</table>
+
+<%= link_to 'Back to Orders', orders_path, class: 'btn btn-primary' %>
