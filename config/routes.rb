@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'orders/index'
   get 'orders/show'
 
-  resources :products
   devise_for :users
 
   get 'home/index'
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :addresses, :carts
+  resources :addresses, :carts, :products, :adminorders
 
   resources :products do
     member do

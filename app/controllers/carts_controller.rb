@@ -38,7 +38,6 @@ class CartsController < ApplicationController
     if request.post?
       selected_address = Address.find(params[:address_id])
       order = current_user.orders.create(address: selected_address, total_price: @total_price)
-      
       @cart.line_items.each do |line_item|
         order.order_items.create(
           product: line_item.product,
