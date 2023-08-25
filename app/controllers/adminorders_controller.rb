@@ -10,10 +10,9 @@ class AdminordersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      redirect_to adminorders_path
+      redirect_to adminorder_path(@order), notice: 'Order status updated successfully.'
     else
-      redirect_to adminorders_path
-      # render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 

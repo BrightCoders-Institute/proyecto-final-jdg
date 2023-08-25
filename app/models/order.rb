@@ -2,5 +2,5 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :address
   has_many :order_items, dependent: :destroy
-  # enum status: { pending: "PENDING", processing: "PROCESSING", completed: "COMPLETED", cancelled: "CANCELLED" }
+  enum status: { pending: "Pending", processing: "Processing", completed: "Completed", cancelled: "Cancelled" }
 end

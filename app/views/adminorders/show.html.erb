@@ -1,54 +1,57 @@
-<h1>Order Details</h1>
+<!-- app/views/adminorders/show.html.erb -->
+<div class="container mt-5">
+  <h1>Order Details</h1>
 
-<h2>Customer</h2>
-<%= @order.user.full_name %>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <h2>Customer</h2>
+      <p><%= @order.user.full_name %></p>
+    </div>
+    <div class="col-md-6">
+      <h2>Shipping Address</h2>
+      <p><%= @order.address.full_address %></p>
+    </div>
+  </div>
 
-  <h2>Shipping Address</h2>
-  <%= @order.address.full_address %>
-
+  <div class="mt-4">
     <h2>Status</h2>
-    <%= @order.status %>
+    <p><%= @order.status %></p>
+  </div>
 
-      <h2>Order Summary:</h2>
-      <table class="table">
-        <thead>
+  <div class="mt-4">
+    <h2>Order Summary:</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.order_items.each do |order_item| %>
           <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <td><%= order_item.product.name %></td>
+            <td><%= number_to_currency(order_item.price) %></td>
+            <td><%= order_item.quantity %></td>
+            <td><%= number_to_currency(order_item.price * order_item.quantity) %></td>
           </tr>
-        </thead>
-        <tbody>
-          <% @order.order_items.each do |order_item| %>
-            <tr>
-              <td>
-                <%= order_item.product.name %>
-              </td>
-              <td>
-                <%= number_to_currency(order_item.price) %>
-              </td>
-              <td>
-                <%= order_item.quantity %>
-              </td>
-              <td>
-                <%= number_to_currency(order_item.price * order_item.quantity) %>
-              </td>
-            </tr>
-            <% end %>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th colspan="3">Total Price:</th>
-            <th>
-              <%= number_to_currency(@order.total_price) %>
-            </th>
-          </tr>
-        </tfoot>
-      </table>
-      <div>
-        <%= link_to edit_adminorder_path(@order), class: "btn btn-primary" do %>
-          <i class="fas fa-edit"></i> Edit
-          <% end %>
-      </div>
-      <%= link_to 'Back to Orders' , orders_path, class: 'btn btn-primary' %>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">Total Price:</th>
+          <th><%= number_to_currency(@order.total_price) %></th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to edit_adminorder_path(@order), class: "btn btn-primary" do %>
+      <i class="fas fa-edit"></i> EDIT STATUS
+    <% end %>
+    <%= link_to 'Back to Orders', orders_path, class: 'btn btn-secondary ml-3' %>
+  </div>
+</div>
