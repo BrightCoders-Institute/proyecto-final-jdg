@@ -10,7 +10,7 @@
             <p><%= number_to_currency(product.base_price) %></p>
           <% end %>
           <%= form_tag add_to_cart_product_path(product), method: :post do %>
-            <%= submit_tag 'Add to Cart', class: 'btn btn-primary btn-sm' %>
+            <%= submit_tag 'Add to Cart', class: 'btn btn-dark col-12' %>
           <% end %>
         </div>
       </div>
