@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def cart?
     redirect_to products_path unless current_user.cart
   end
