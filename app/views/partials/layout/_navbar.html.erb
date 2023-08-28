@@ -1,8 +1,8 @@
-<div class="container-flouid" id="navbar">
+<div class="container-fluid" id="navbar">
   <nav class="navbar navbar-expand-lg bg-light shadow-sm p-3 bg-body-tertiary rounded">
     <div class="container">
-      <a class="navbar-brand" href="/">
-        <%= image_tag("monkeyHats.webp", class: "rounded-circle logo-size mx-auto" ) %>
+      <a class="navbar-brand col-5 col-md-2 " href="/">
+        <%= image_tag("monkeyHats.webp", class: "rounded-circle w-75 mt-3 mt-md-2"  ) %>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,40 +10,21 @@
       </button>
       <div class="collapse navbar-collapse ms-4" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
           <li class="nav-item underline">
             <%= link_to 'Home' , root_path, class: "nav-link#{' active' if current_page?(root_path)}" %>
           </li>
-
           <li class="nav-item underline">
             <%= link_to 'Products' , products_path, class: "nav-link#{' active' if current_page?(products_path)}" %>
           </li>
-
           <li class="nav-item underline">
             <%= link_to 'About' , about_index_path, class: "nav-link#{' active' if current_page?(about_index_path)}" %>
           </li>
-
           <li class="nav-item underline">
             <%= link_to 'FAQs' , faqs_index_path, class: "nav-link#{' active' if current_page?(faqs_index_path)}" %>
           </li>
-
         </ul>
-
-        <div class="container text-center d-flex justify-content-end gap-4">
-          <div class="row">
-            <% if user_signed_in? %>
-            <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-secondary d-flex align-items-center" do %>
-            <i class="fa-solid fa-sign-out-alt me-2"></i> SIGN OUT
-            <% end %>
-                <% else %>
-                  <%= link_to new_user_session_path, class: "btn btn-dark d-flex align-items-center" do %>
-                    <i class="fa-solid fa-sign-in-alt"></i>
-                    SIGN IN
-                    <% end %>
-                      <% end %>
-
-          </div>
-          <div class="row">
+        <div class="text-center d-flex justify-content-between gap-4">
+          <div class="row align-content-center">
             <div class="col">
               <i class="fa-solid fa-magnifying-glass color-icon"></i>
             </div>
@@ -51,18 +32,29 @@
               <div class="col">
                 <% if user_signed_in? %>
                   <%= link_to '' , addresses_path, class: "fa-solid fa-user color-icon" %>
-                    <% else %>
-                      <%= link_to '' , user_session_path, class: "fa-solid fa-user color-icon" %>
-                        <% end %>
+                <% else %>
+                  <%= link_to '' , user_session_path, class: "fa-solid fa-user color-icon" %>
+                <% end %>
               </div>
+            <% end %>
+            <div class="col">
+              <%= link_to '' , carts_path, class: "fa-solid fa-bag-shopping color-icon" %>
+            </div>
+          </div>
+          <div class="row">
+            <% if user_signed_in? %>
+              <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-secondary d-flex align-items-center" do %>
+                <i class="fa-solid fa-sign-out-alt me-2"></i> SIGN OUT
               <% end %>
-                <div class="col">
-                  <%= link_to '' , carts_path, class: "fa-solid fa-bag-shopping color-icon" %>
-                </div>
+            <% else %>
+              <%= link_to new_user_session_path, class: "btn btn-dark d-flex align-items-center" do %>
+                <i class="fa-solid fa-sign-in-alt me-2"></i> SIGN IN
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
-</div>
-</nav>
+  </div>
+  </nav>
 </div>

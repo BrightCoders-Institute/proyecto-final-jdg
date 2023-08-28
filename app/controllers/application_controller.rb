@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    products_path # Ruta a la que deseas redirigir después del inicio de sesión exitoso
+    root_path # Ruta a la que deseas redirigir después del inicio de sesión exitoso
   end
 
   def configure_permitted_parameters
