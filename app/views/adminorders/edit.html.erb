@@ -1,0 +1,13 @@
+<div class="container mt-5">
+  <h1>Edit Order</h1>
+
+  <%= form_for @order, url: adminorder_path(@order), method: :patch do |f| %>
+    <div class="form-group">
+      <%= f.label :status, class: "font-weight-bold" %>
+      <%= f.select :status, Order.statuses.keys.map { |s| [s.humanize, s] }, {}, class: "form-control" %>
+    </div>
+    <%= f.submit "Update Order", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to 'Back to Orders', adminorders_path, class: 'btn btn-secondary mt-3' %>
+</div>

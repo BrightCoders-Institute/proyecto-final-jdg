@@ -7,4 +7,8 @@ class User < ApplicationRecord
   self.inheritance_column = :type
 
   validates :first_name, :last_name, presence: true
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
