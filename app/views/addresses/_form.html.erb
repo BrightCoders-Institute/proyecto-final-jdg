@@ -1,24 +1,28 @@
 <div class="row offset-md-3 col-md-6">
   <%= form_for(@address) do |f| %>
     <%= render "/devise/shared/error_messages", resource: @address %>
+    <div>
+      <%= f.label :address %>
+      <%= f.text_area :address, class: "w-100 form-control", id: "address-input" %>
+    </div>
+
+    <div class="my-3">
+      <div id="map" style="height: 300px;"></div>
+    </div>
+
     <div class="my-3">
       <%= f.label :city %>
-      <%= f.text_field :city, class: "w-100 form-control" %>
+      <%= f.text_field :city, class: "w-100 form-control", id: "address_city" %>
     </div>
 
     <div>
       <%= f.label :state %>
-      <%= f.text_field :state, class: "w-100 form-control" %>
+      <%= f.text_field :state, class: "w-100 form-control", id: "address_state" %>
     </div>
 
     <div class="my-3">
       <%= f.label :zip_code %>
-      <%= f.number_field :zip_code, class: "w-100 form-control" %>
-    </div>
-
-    <div>
-      <%= f.label :address %>
-      <%= f.text_area :address, class: "w-100 form-control" %>
+      <%= f.number_field :zip_code, class: "w-100 form-control", id: "address_zip_code" %>
     </div>
 
     <div class="my-3">
@@ -33,4 +37,49 @@
   <% end %>
 </div>
 
-</div>
+<script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 19.2433, lng: -103.725 }, // Centra el mapa en la ciudad de Colima
+      zoom: 14,
+    });
+
+    const input = document.getElementById("address-input");
+    const autocomplete = new google.maps.places.Autocomplete(input);
+
+    map.addListener("click", function(event) {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ location: event.latLng }, function(results, status) {
+        if (status === "OK" && results[0]) {
+          input.value = results[0].formatted_address;
+          fillAddressFields(results[0]);
+        }
+      });
+    });
+
+    autocomplete.addListener("place_changed", function () {
+      const place = autocomplete.getPlace();
+      if (place.geometry) {
+        map.setCenter(place.geometry.location);
+        fillAddressFields(place);
+      }
+    });
+
+    function fillAddressFields(place) {
+      const addressComponents = place.address_components;
+
+      for (const component of addressComponents) {
+        const types = component.types;
+
+        if (types.includes("locality")) { // Ciudad
+          document.getElementById("address_city").value = component.long_name;
+        } else if (types.includes("administrative_area_level_1")) { // Estado
+          document.getElementById("address_state").value = component.long_name; // No se abrevia
+        } else if (types.includes("postal_code")) { // Código Postal
+          document.getElementById("address_zip_code").value = component.long_name;
+        }
+      }
+    }
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzid6PGnfbU1hCmPlnOjVjJA3lpB7BabY&libraries=places&callback=initMap" async defer></script>
