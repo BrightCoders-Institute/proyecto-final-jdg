@@ -9,7 +9,7 @@
     <div class="my-3">
       <div id="map" style="height: 300px;"></div>
     </div>
-    
+
     <div class="my-3">
       <%= f.label :city %>
       <%= f.text_field :city, class: "w-100 form-control", id: "address_city" %>
@@ -89,4 +89,5 @@
     }
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzid6PGnfbU1hCmPlnOjVjJA3lpB7BabY&libraries=places&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.development[:api_key] %>&libraries=places&callback=initMap" async defer></script>
+
