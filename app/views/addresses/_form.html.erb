@@ -9,7 +9,7 @@
     <div class="my-3">
       <div id="map" style="height: 300px;"></div>
     </div>
-
+    
     <div class="my-3">
       <%= f.label :city %>
       <%= f.text_field :city, class: "w-100 form-control", id: "address_city" %>
@@ -74,11 +74,18 @@
         if (types.includes("locality")) { // Ciudad
           document.getElementById("address_city").value = component.long_name;
         } else if (types.includes("administrative_area_level_1")) { // Estado
-          document.getElementById("address_state").value = component.long_name; // No se abrevia
+          document.getElementById("address_state").value = component.long_name;
         } else if (types.includes("postal_code")) { // Código Postal
           document.getElementById("address_zip_code").value = component.long_name;
         }
       }
+
+      // Extraer la parte de la dirección correspondiente a la calle, número y colonia
+      const streetNumber = place.address_components.find(component => component.types.includes("street_number"));
+      const route = place.address_components.find(component => component.types.includes("route"));
+      const neighborhood = place.address_components.find(component => component.types.includes("neighborhood"));
+      const addressValue = `${route ? route.long_name : ''}${streetNumber ? ' ' + streetNumber.long_name : ''}${neighborhood ? ', ' + neighborhood.long_name : ''}`;
+      document.getElementById("address-input").value = addressValue;
     }
   }
 </script>
