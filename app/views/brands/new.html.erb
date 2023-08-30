@@ -1,9 +1,23 @@
-<h1>New brand</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Brand</title>
+  <!-- Agrega los enlaces a los archivos CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>New Brand</h1>
+    
+    <div class="card">
+      <div class="card-body">
+        <%= render "form", brand: @brand %>
+      </div>
+    </div>
 
-<%= render "form", brand: @brand %>
-
-<br>
-
-<div>
-  <%= link_to "Back to brands", brands_path %>
-</div>
+    <div class="mt-3 text-center">
+      <a href="<%= brands_path %>" class="btn btn-secondary">Back to Brands</a>
+    </div>
+  </div>
+</body>
+</html>
