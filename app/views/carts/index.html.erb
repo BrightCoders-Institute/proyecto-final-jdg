@@ -18,8 +18,8 @@
                 <% @line_items.each do |line_item| %>
                   <tr>
                     <td class="align-middle">
-                      <% if line_item.product.image.attached? %>
-                        <%= image_tag rails_blob_path(line_item.product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+                      <% if line_item.product.images.first %>
+                        <%= image_tag rails_blob_path(line_item.product.images.first, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
                       <% else %>
                         No Image
                       <% end %>
