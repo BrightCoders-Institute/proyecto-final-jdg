@@ -42,12 +42,15 @@
         <%= form.file_field "image_#{index}", class: "form-control-file" %>
       </div>
     <% end %>
-    <%= form.file_field :images, multiple: true, class: "form-control-file" %>
+    <!-- Solo mostrar el campo de carga de archivos si no hay imágenes adjuntas -->
+    <% unless product.images.attached? %>
+      <%= form.file_field :images, multiple: true, class: "form-control-file" %>
+    <% end %>
   </div>
 
   <div>
     <%= form.label :size, style: "display: block" %>
-    <%= form.text_field :size, class: "w-100 form-control" %>
+    <%= form.select :size, ["Small", "Medium", "Large", "Extra Large"], {}, class: "w-100 form-control" %>
   </div>
 
   <div class="my-3">
