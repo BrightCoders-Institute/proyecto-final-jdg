@@ -23,13 +23,15 @@
 
   <div class="my-3">
     <%= form.label :product_type, style: "display: block" %>
-    <%= form.text_field :product_type, class: "w-100 form-control" %>
+    <%= form.select :product_type, ["Caps", "Pins", "Cases"], {}, class: "w-100 form-control" %>
   </div>
+  
 
-  <div>
-    <%= form.label :brand, style: "display: block" %>
-    <%= form.text_field :brand, class: "w-100 form-control" %>
+  <div class="my-3">
+    <%= form.label :brand_id %>
+    <%= form.collection_select :brand_id, Brand.all, :id, :name, prompt: "Select a Brand" %>
   </div>
+  
 
   <div class="my-3">
     <%= form.label :image, class:"form-label mb-2" %>

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @brand %>
+<div>
+<strong>Images:</strong>
+<% @brand.images.each do |image| %>
+<%= image_tag image, width: 100, height: 100 %>
+<% end %>
+</div>
+
+<div>
+<%= link_to "Edit this brand", edit_brand_path(@brand) %> |
+<%= link_to "Back to brands", brands_path %>
+
+<%= button_to "Destroy this brand", @brand, method: :delete %>
+</div>
