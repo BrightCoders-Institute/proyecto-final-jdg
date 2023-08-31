@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :cart?, only: :show
   before_action :find_product, only: %i[add_to_cart]
-  before_action :load_common_data, only: %i[show checkout index ]
+  before_action :load_common_data, only: %i[show checkout index]
 
   def add_to_cart
     @cart = current_user.cart || current_user.create_cart

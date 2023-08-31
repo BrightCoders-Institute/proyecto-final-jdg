@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :admin?, only: %i[ edit update destroy create new]
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :admin?, only: %i[edit update destroy create new]
+  before_action :set_product, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   def add_to_cart
