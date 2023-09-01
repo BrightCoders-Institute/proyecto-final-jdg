@@ -1,25 +1,27 @@
-<!-- app/views/adminorders/show.html.erb -->
-<div class="container mt-5">
-  <h1>Order Details</h1>
+<div class="container">
+  <div class="row ">
+      <h1 class="my-3 my-md-5 login-heading fw-medium fs-1 fw-light text-center">Order Details</h1>
+  </div>
 
   <div class="row mt-4">
-    <div class="col-md-6">
-      <h2>Customer</h2>
+    <div class="col-md-4">
+      <h2 class="login-heading fw-medium fs-2 fw-light">Customer</h2>
       <p><%= @order.user.full_name %></p>
     </div>
-    <div class="col-md-6">
-      <h2>Shipping Address</h2>
+    <div class="col-md-4">
+      <h2 class="login-heading fw-medium fs-2 fw-light">Shipping Address</h2>
       <p><%= @order.address.full_address %></p>
+    </div>
+    <div class="col-md-4">
+      <h2 class="login-heading fw-medium fs-2 fw-light">Status</h2>
+      <p><%= @order.status %></p>
     </div>
   </div>
 
-  <div class="mt-4">
-    <h2>Status</h2>
-    <p><%= @order.status %></p>
-  </div>
+
 
   <div class="mt-4">
-    <h2>Order Summary:</h2>
+    <h2 class="login-heading fw-medium fs-2 fw-light">Order Summary:</h2>
     <table class="table">
       <thead>
         <tr>
@@ -48,10 +50,12 @@
     </table>
   </div>
 
-  <div class="mt-4">
-    <%= link_to edit_adminorder_path(@order), class: "btn btn-primary" do %>
-      <i class="fas fa-edit"></i> EDIT STATUS
-    <% end %>
-    <%= link_to 'Back to Orders', adminorders_path, class: 'btn btn-secondary ml-3' %>
+  <div class="my-5 text-center">
+    <div class="btn-group">
+      <%= link_to edit_adminorder_path(@order), class: "btn btn-primary" do %>
+        <i class="fas fa-edit"></i> EDIT STATUS
+      <% end %>
+      <%= link_to 'Back to Orders', adminorders_path, class: 'btn btn-secondary' %>
+    </div>
   </div>
 </div>
