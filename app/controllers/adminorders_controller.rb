@@ -3,10 +3,8 @@ class AdminordersController < ApplicationController
 
   def index
     if current_user && current_user.usertype == 'admin'
-      # Mostrar la página de órdenes pendientes para los administradores
       @orders = Order.all
     else
-      # Redirigir a los usuarios normales al inicio
       redirect_to root_path
     end
   end
