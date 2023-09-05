@@ -2,8 +2,8 @@ class AddressesController < ApplicationController
   before_action :customer?, only: %i[index edit update destroy create new]
   before_action :set_address, only: %i[edit update destroy]
   def index
-    @addresses = current_user.addresses
-    redirect_to root_path unless @addresses
+    @addresses = Address.all
+    render 'addresses/_index'
   end
 
   def new
@@ -11,14 +11,16 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = current_user.addresses.build(addresses_params)
+    @address = Address.new(address_params)
+    @address.user = current_user
+
     if @address.save
+      flash[:success] = "Address created successfully."
       redirect_to addresses_path
     else
-      render :new, status: :unprocessable_entity
+      render 'new'
     end
   end
-
 
   def edit; end
 
@@ -33,16 +35,16 @@ class AddressesController < ApplicationController
   def delete_address
     @address = Address.find(params[:id])
     if @address.destroy
-      flash[:notice] = 'La dirección se eliminó correctamente.'
+      flash[:notice] = 'The address was successfully removed.'
     else
-      flash[:alert] = 'Hubo un error al eliminar la dirección.'
+      flash[:alert] = 'There was an error deleting the address.'
     end
     redirect_to addresses_path
   end
 
   private
 
-  def addresses_params
+  def address_params
     params.require(:address).permit(:city, :state, :zip_code, :address, :phone_number)
   end
 

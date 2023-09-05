@@ -2,19 +2,10 @@ Rails.application.routes.draw do
 
   get 'faqs/index'
   get 'about/index'
-
-  get 'orders/index'
-  get 'orders/show'
+  get 'home/index'
 
   devise_for :users
-
-  get 'home/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  root "home#index"
-
-  resources :addresses, :carts, :products, :adminorders
+  resources :users, only: [:show, :edit, :update]
 
   resources :products do
     member do
@@ -24,10 +15,10 @@ Rails.application.routes.draw do
 
   resources :carts do
     delete 'remove_product/:line_item_id', to: 'carts#remove_product', on: :member, as: :remove_product
+    post 'checkout', on: :collection
   end
 
   resources :orders, only: [:index, :show]
-  post 'carts/checkout', to: 'carts#checkout', as: 'checkout'
 
   resources :addresses do
     member do
@@ -35,4 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :adminorders
+
+  root "home#index"
 end

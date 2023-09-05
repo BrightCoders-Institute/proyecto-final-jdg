@@ -1,0 +1,16 @@
+<!-- app/views/users/show.html.erb -->
+
+<h1>User Profile</h1>
+
+<!-- Nombre del usuario -->
+<h2>Username</h2>
+<p><%= @user.full_name %></p>
+
+<!-- Correo Electrónico -->
+<h2>Email</h2>
+<p><%= @user.email %></p>
+
+<!-- Direcciones -->
+<%= render 'addresses/index' %>
+<!-- Órdenes Realizadas -->
+<h2>Completed Orders</h2>
