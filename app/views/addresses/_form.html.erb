@@ -26,11 +26,13 @@
       <%= f.text_field :phone_number, class: "w-100 form-control" %>
     </div>
 
-    <div class="text-center">
-      <%= f.submit "Save Address", class: "btn btn-login text-uppercase fw-bold my-3" %>
-      <%= button_tag "Clear Fields", type: "reset", class: "btn btn-secondary text-uppercase fw-bold my-3 mx-2" %>
+    <div class="text-center my-5">
+      <%= f.submit "Save Address", class: "btn btn-login text-uppercase fw-bold" %>
+      <% if @address.persisted? %>
+        <%= button_to 'Delete',  address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger text-uppercase fw-bold mx-2 p-2' %>
+      <% end %>
+
+      <%= link_to "Back to Profile", user_path(current_user), class: "btn btn-secondary text-uppercase fw-bold p-2" %>
     </div>
   <% end %>
-</div>
-
 </div>

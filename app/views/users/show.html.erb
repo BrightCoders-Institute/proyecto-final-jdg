@@ -1,16 +1,25 @@
-<!-- app/views/users/show.html.erb -->
+<div class="container">
+  <div class="row text-center">
+     <h1 class="login-heading mb-4 fw-medium fs-1 fw-light my-md-5">User Profile</h1>
+  </div>
 
-<h1>User Profile</h1>
+  <div class="row text-center">
+    <div class="col-md-3 offset-md-3">
+      <h2 class="login-heading fw-medium fs-3 fw-light">Username:</h2>
+      <p><%= @user.full_name %></p>
+    </div>
+    <div class="col-md-3">
+      <h2 class="login-heading fw-medium fs-3 fw-light">Email:</h2>
+      <p><%= @user.email %></p>
+    </div>
+  </div>
 
-<!-- Nombre del usuario -->
-<h2>Username</h2>
-<p><%= @user.full_name %></p>
-
-<!-- Correo Electrónico -->
-<h2>Email</h2>
-<p><%= @user.email %></p>
-
-<!-- Direcciones -->
-<%= render 'addresses/index' %>
-<!-- Órdenes Realizadas -->
-<h2>Completed Orders</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'addresses/index' %>
+    </div>
+    <div class="col-md-6">
+      <%= render 'orders/index' %>
+    </div>
+  </div>
+</div>

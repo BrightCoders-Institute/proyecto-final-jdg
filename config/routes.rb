@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-
   get 'faqs/index'
   get 'about/index'
   get 'home/index'
 
   devise_for :users
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update], path: 'profile'
 
   resources :products do
     member do
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   resources :addresses do
     member do
       delete 'delete_address'
+      get 'details'
     end
   end
 

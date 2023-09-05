@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @addresses = @user.addresses if @user.present?
+    @orders = @user.orders
   end
 
   def edit
@@ -19,9 +20,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_password
+    @user = current_user
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :other_fields)
+    params.require(:user).permit(:current_password, :password, :password_confirmation, :other_fields)
   end
+
 end

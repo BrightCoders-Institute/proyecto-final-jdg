@@ -25,21 +25,20 @@ class AddressesController < ApplicationController
   def edit; end
 
   def update
-    if @address.update(addresses_params)
-      redirect_to addresses_path
+    if @address.update(address_params)
+      redirect_to user_path(current_user)
     else
-    render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  def delete_address
+  def destroy
     @address = Address.find(params[:id])
     if @address.destroy
-      flash[:notice] = 'The address was successfully removed.'
+      redirect_to user_path(current_user), notice: 'Address was successfully deleted.'
     else
-      flash[:alert] = 'There was an error deleting the address.'
+      redirect_to addresses_path, alert: 'Failed to delete the address.'
     end
-    redirect_to addresses_path
   end
 
   private
