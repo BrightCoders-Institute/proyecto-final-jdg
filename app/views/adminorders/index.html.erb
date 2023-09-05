@@ -1,10 +1,21 @@
 <h1>Pending Orders</h1>
 
+<%= search_form_for @q, url: adminorders_path, html: { method: :get } do |f| %>
+  <div class="field">
+    <%= f.label :status_eq, "Status" %>
+    <%= f.select :status_eq, Order.statuses.keys, prompt: "Select Status" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Search" %>
+  </div>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
       <th>Total Price</th>
       <th>View Details</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +23,7 @@
       <tr>
         <td><%= number_to_currency(order.total_price) %></td>
         <td><%= link_to 'View Details', adminorder_path(order) %></td>
+        <td><%= order.status %></td>
       </tr>
     <% end %>
   </tbody>

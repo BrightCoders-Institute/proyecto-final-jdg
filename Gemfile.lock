@@ -190,6 +190,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    ransack (4.0.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     redis (5.0.6)
       redis-client (>= 0.9.0)
     redis-client (0.14.1)
@@ -269,6 +273,7 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rails (~> 7.0.6)
+  ransack
   redis
   sassc-rails
   selenium-webdriver
