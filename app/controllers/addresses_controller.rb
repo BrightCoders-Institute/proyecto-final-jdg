@@ -18,7 +18,7 @@ class AddressesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
 
   def edit; end
 
@@ -30,13 +30,17 @@ class AddressesController < ApplicationController
     end
   end
 
-  def destroy
-    @address.destroy
+  def delete_address
+    @address = Address.find(params[:id])
+    if @address.destroy
+      flash[:notice] = 'La dirección se eliminó correctamente.'
+    else
+      flash[:alert] = 'Hubo un error al eliminar la dirección.'
+    end
     redirect_to addresses_path
   end
 
   private
-
 
   def addresses_params
     params.require(:address).permit(:city, :state, :zip_code, :address, :phone_number)

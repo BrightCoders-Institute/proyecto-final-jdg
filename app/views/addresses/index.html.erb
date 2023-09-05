@@ -42,8 +42,10 @@
                 <%= link_to edit_address_path(address), class: "btn btn-primary" do %>
                   <i class="fas fa-edit"></i> Edit
                 <% end %>
-                <%= link_to address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" do %>
-                  <i class="fas fa-trash"></i> Delete
+                <%= form_with model: address, url: delete_address_address_path(address), method: :delete, data: { confirm: 'Are you sure?' } do |form| %>
+                  <%= form.button type: :submit, class: 'btn btn-danger' do %>
+                    <i class="fas fa-trash"></i> Delete
+                  <% end %>
                 <% end %>
               </div>
             </td>
@@ -57,8 +59,10 @@
                 <%= link_to edit_address_path(address), class: "btn btn-primary" do %>
                   <i class="fas fa-edit"></i> Edit
                 <% end %>
-                <%= link_to address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" do %>
-                  <i class="fas fa-trash"></i> Delete
+                <%= form_with model: address, url: delete_address_address_path(address), method: :delete, data: { confirm: 'Are you sure?' } do |form| %>
+                  <%= form.button type: :submit, class: 'btn btn-danger' do %>
+                    <i class="fas fa-trash"></i> Delete
+                  <% end %>
                 <% end %>
               </div>
             </td>

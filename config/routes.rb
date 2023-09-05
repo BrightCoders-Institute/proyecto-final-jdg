@@ -21,12 +21,18 @@ Rails.application.routes.draw do
       post 'add_to_cart'
     end
   end
-  
+
   resources :carts do
     delete 'remove_product/:line_item_id', to: 'carts#remove_product', on: :member, as: :remove_product
   end
 
   resources :orders, only: [:index, :show]
   post 'carts/checkout', to: 'carts#checkout', as: 'checkout'
+
+  resources :addresses do
+    member do
+      delete 'delete_address'
+    end
+  end
 
 end
