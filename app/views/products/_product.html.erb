@@ -1,8 +1,8 @@
 <!-- Versión para vista móvil (vertical) -->
 <tr class="d-md-none">
   <td colspan="2" class="align-middle">
-    <% if product.image.attached? %>
-      <%= image_tag rails_blob_path(product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+    <% if product.images.first %>
+      <%= image_tag rails_blob_path(product.images.first, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
     <% else %>
       No Image
     <% end %>
@@ -62,8 +62,8 @@
 <!-- Versión para vista de escritorio (horizontal) -->
 <tr class="d-none d-md-table-row">
   <td>
-    <% if product.image.attached? %>
-      <%= image_tag rails_blob_path(product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+    <% if product.images.first %>
+      <%= image_tag rails_blob_path(product.images.first, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
     <% else %>
       No Image
     <% end %>
@@ -71,7 +71,7 @@
   <td class="align-middle"><%= product.name %></td>
   <td class="align-middle"><%= product.description %></td>
   <td class="align-middle"><%= product.product_type %></td>
-  <td class="align-middle"><%= product.brand %></td>
+  <td class="align-middle"><%= product.brand.name %></td>
   <td class="align-middle"><%= product.size %></td>
   <td class="align-middle"><%= product.base_price %></td>
   <td class="align-middle"><%= product.discount %></td>
