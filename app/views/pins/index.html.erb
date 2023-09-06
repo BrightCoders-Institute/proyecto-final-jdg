@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row text-center">
+    <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Products</h1>
+  </div>
+
+  <div id="products" class="table-responsive">
+    <table class="table table-hover text-center">
+      <thead>
+        <tr class="d-none d-md-table-row">
+          <th></th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Product Type</th>
+          <th>Brand</th>
+          <th>Size</th>
+          <th>Base Price</th>
+          <th>Discount</th>
+          <th>Total Price</th>
+          <th>Stock</th>
+          <th>Availability</th>
+          <th>Show</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <%= render @products %>
+      </tbody>
+    </table>
+  </div>
+<% if current_user.usertype == 'admin'%>
+  <div class="text-center my-3">
+    <%= link_to "New product", new_product_path, class: "btn custom-button text-uppercase fw-bold" %>
+  </div>
+  <% end %>
+</div>

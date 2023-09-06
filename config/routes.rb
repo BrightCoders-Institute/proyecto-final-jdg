@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'cases/index'
+  get 'cases/show'
+  get 'pins/index'
+  get 'pins/show'
+  get 'caps/index'
+  get 'caps/show'
   get 'faqs/index'
   get 'about/index'
 
@@ -13,7 +19,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :addresses, :carts, :products, :adminorders, :brands
+  resources :addresses, :carts, :products, :adminorders, :brands, :caps, :pins, :cases
 
   resources :products do
     member do

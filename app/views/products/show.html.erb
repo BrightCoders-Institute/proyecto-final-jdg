@@ -39,10 +39,7 @@
           <td class="align-middle">Description</td>
           <td><%= @product.description %></td>
         </tr>
-        <tr>
-          <td class="align-middle">Product Type</td>
-          <td><%= @product.product_type %></td>
-        </tr>
+        <%if @product.product_type == 'Caps' %>
         <tr>
           <td class="align-middle">Brand</td>
           <td><%= @product.brand.name %></td>
@@ -51,6 +48,8 @@
           <td class="align-middle">Size</td>
           <td><%= @product.size %></td>
         </tr>
+        <% end %>
+        <% if current_user.usertype == 'admin' %>
         <tr>
           <td class="align-middle">Base Price</td>
           <td><%= @product.base_price %></td>
@@ -60,16 +59,17 @@
           <td><%= @product.discount %></td>
         </tr>
         <tr>
-          <td class="align-middle">Total Price</td>
-          <td><%= @product.total_price %></td>
-        </tr>
-        <tr>
           <td class="align-middle">Stock</td>
           <td><%= @product.stock %></td>
         </tr>
         <tr>
           <td class="align-middle">Availability</td>
           <td><%= @product.availability %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td class="align-middle">Total Price</td>
+          <td><%= @product.total_price %></td>
         </tr>
       </tbody>
     </table>
