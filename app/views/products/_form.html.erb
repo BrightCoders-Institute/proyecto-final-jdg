@@ -25,13 +25,11 @@
     <%= form.label :product_type, style: "display: block" %>
     <%= form.select :product_type, ["Caps", "Pins", "Cases"], {}, class: "w-100 form-control" %>
   </div>
-  
 
   <div class="my-3">
     <%= form.label :brand_id %>
     <%= form.collection_select :brand_id, Brand.all, :id, :name, prompt: "Select a Brand" %>
   </div>
-  
 
   <div class="my-3">
     <%= form.label :images, "Edit/Add Images" %>
@@ -60,13 +58,8 @@
 
   <div>
     <%= form.label :discount, style: "display: block" %>
-    <%= form.text_field :discount, class: "w-100 form-control", id: "product_discount" %>
-  </div>
-
-  <div class="my-3">
-    <%= form.label :total_price, style: "display: block" %>
-    <%= form.text_field :total_price, class: "w-100 form-control", readonly: true, id: "calculated_total_price" %>
-  </div>
+    <%= form.text_field :discount, class: "w-100 form-control", id: "product_discount", value: (product.discount || 0) %>
+  </div>  
 
   <div>
     <%= form.label :stock, style: "display: block" %>
@@ -82,24 +75,3 @@
     <%= form.submit class: "btn custom-button text-uppercase fw-bold mt-3 " %>
   </div>
 <% end %>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const basePriceInput = document.getElementById("product_base_price");
-    const discountInput = document.getElementById("product_discount");
-    const totalPriceInput = document.getElementById("calculated_total_price");
-
-    function updateTotalPrice() {
-      const basePrice = parseFloat(basePriceInput.value);
-      const discount = parseFloat(discountInput.value);
-
-      if (!isNaN(basePrice) && !isNaN(discount)) {
-        const totalPrice = (basePrice * (1 - discount / 100)).toFixed(2);
-        totalPriceInput.value = totalPrice;
-      }
-    }
-
-    basePriceInput.addEventListener("input", updateTotalPrice);
-    discountInput.addEventListener("input", updateTotalPrice);
-  });
-</script>
