@@ -15,9 +15,11 @@ class ProductsController < ApplicationController
       line_item = @cart.line_items.build(product: @product, quantity: 1)
     end
 
+    session[:last_view] = request.referrer
+
     if line_item.save
-      redirect_to products_path, notice: 'Product added to cart.'
-    else
+      redirect_to session[:last_view], alert: 'Product added to cart.'
+     else
       redirect_to @product, alert: 'Failed to add product to cart.'
     end
   end
