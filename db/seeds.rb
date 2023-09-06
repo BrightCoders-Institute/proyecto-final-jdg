@@ -31,4 +31,8 @@ User.create!(
   usertype: "admin"
   )
 
+Brand.create!(
+  name : "N/A"
+  )
+
   puts "Usuario administrador creado"

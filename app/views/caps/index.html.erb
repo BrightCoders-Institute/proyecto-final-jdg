@@ -3,6 +3,15 @@
     <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">CAPS</h1>
   </div>
 
+  <!-- Formulario de búsqueda por marca -->
+  <%= form_tag(caps_path, method: :get, class: "mb-3") do %>
+    <div class="form-group">
+      <%= label_tag "brand", "Filter by Brand:" %>
+      <%= select_tag "brand", options_for_select(Brand.pluck(:name, :id)), prompt: "Select Brand", class: "form-control" %>
+    </div>
+    <%= submit_tag "Filter", class: "btn btn-primary" %>
+  <% end %>
+
   <div id="products" class="table-responsive">
     <table class="table table-hover text-center">
       <thead>
@@ -26,9 +35,9 @@
       </tbody>
     </table>
   </div>
-<% if current_user.usertype == 'admin'%>
-  <div class="text-center my-3">
-    <%= link_to "New product", new_product_path, class: "btn custom-button text-uppercase fw-bold" %>
-  </div>
+  <% if current_user.usertype == 'admin'%>
+    <div class="text-center my-3">
+      <%= link_to "New product", new_product_path, class: "btn custom-button text-uppercase fw-bold" %>
+    </div>
   <% end %>
 </div>
