@@ -1,11 +1,10 @@
-# Crea un usuario administrador
 User.create!(
   email: "rounderjards@gmail.com",
   password: "123456",
   first_name: "Admin",
   last_name: "User",
   usertype: "admin"
-  )
+)
 
 User.create!(
   email: "cruzhugo1997@gmail.com",
@@ -13,7 +12,7 @@ User.create!(
   first_name: "Admin",
   last_name: "User",
   usertype: "admin"
-  )
+)
 
 User.create!(
   email: "hector.ninds@gmail.com",
@@ -21,7 +20,7 @@ User.create!(
   first_name: "Admin",
   last_name: "User",
   usertype: "admin"
-  )
+)
 
 User.create!(
   email: "jlopez114@ucol.mx",
@@ -29,10 +28,10 @@ User.create!(
   first_name: "Admin",
   last_name: "User",
   usertype: "admin"
-  )
+)
 
 Brand.create!(
-  name : "N/A"
-  )
+  name: "N/A" 
+)
 
-  puts "Usuario administrador creado"
+puts "Usuario administrador creado"
