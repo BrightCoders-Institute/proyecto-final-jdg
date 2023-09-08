@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="my-3">
     <%= form.label :name, style: "display: block " %>
     <%= form.text_field :name, class: "w-100 form-control" %>
@@ -21,7 +20,7 @@
     <%= form.text_area :description, class: "w-100 form-control" %>
   </div>
 
-  <div class="my-3">
+  <div class="my-3" data-controller="productna">
     <%= form.label :product_type, style: "display: block" %>
     <%= form.select :product_type, ["Caps", "Pins", "Cases"], {}, class: "w-100 form-control", data: { target: "product-form.productType" } %>
   </div>
@@ -75,25 +74,3 @@
     <%= form.submit class: "btn custom-button text-uppercase fw-bold mt-3 " %>
   </div>
 <% end %>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const productTypeField = document.querySelector("#product_product_type"); // Cambia "#product_product_type" al selector correcto si es necesario
-    const sizeField = document.querySelector("#size_field");
-
-    // Función para actualizar el campo de tamaño
-    function updateSizeField() {
-      if (productTypeField.value === "Pins" || productTypeField.value === "Cases") {
-        sizeField.value = "N/A";
-        sizeField.disabled = true;
-      } else {
-        sizeField.value = ""; // Restablecer el valor si no es Pins/Cases
-        sizeField.disabled = false;
-      }
-    }
-
-    // Llama a la función al cargar la página y cuando cambia el campo product_type
-    updateSizeField();
-    productTypeField.addEventListener("change", updateSizeField);
-  });
-</script>
