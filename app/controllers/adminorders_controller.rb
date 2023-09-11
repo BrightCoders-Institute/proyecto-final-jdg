@@ -1,4 +1,5 @@
 class AdminordersController < ApplicationController
+  before_action :admin?
   before_action :find_order, only: %i[show edit update]
 
   def index

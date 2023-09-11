@@ -1,0 +1,38 @@
+<%= form_with(model: brand) do |form| %>
+  <% if brand.errors.any? %>
+    <div style="color: red">
+      <h2>
+        <%= pluralize(brand.errors.count, "error" ) %> prohibited this brand from being saved:
+      </h2>
+      <ul>
+        <% brand.errors.each do |error| %>
+          <li>
+            <%= error.full_message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+      <div class="form-group">
+        <%= form.label :name %>
+          <%= form.text_field :name, class: "form-control" %>
+      </div>
+      <div class="my-3">
+        <%= form.label :images, "Edit/Add Images" %>
+          <% brand.images.each_with_index do |image, index| %>
+            <div class="mb-3">
+              <%= form.label "image_#{index}" , "Edit Image #{index + 1}" %>
+                <%= image_tag image, class: "img-thumbnail custom-thumbnail" , width: 100, height: 100 %>
+                  <%= form.file_field "image_#{index}" , class: "form-control-file" %>
+            </div>
+            <% end %>
+              <!-- Solo mostrar el campo de carga de archivos si no hay imágenes adjuntas -->
+              <% unless brand.images.attached? %>
+                <%= form.file_field :images, multiple: true, class: "form-control-file" %>
+                  <% end %>
+      </div>
+
+      <div>
+        <%= form.submit %>
+      </div>
+      <% end %>

@@ -1,4 +1,4 @@
-<%= form_with(model: product) do |form| %>
+<%= form_with(model: product, data: { controller: "product-form" }) do |form| %>
   <% if product.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="my-3">
     <%= form.label :name, style: "display: block " %>
     <%= form.text_field :name, class: "w-100 form-control" %>
@@ -21,40 +20,45 @@
     <%= form.text_area :description, class: "w-100 form-control" %>
   </div>
 
-  <div class="my-3">
+  <div class="my-3" data-controller="productna">
     <%= form.label :product_type, style: "display: block" %>
-    <%= form.text_field :product_type, class: "w-100 form-control" %>
-  </div>
-
-  <div>
-    <%= form.label :brand, style: "display: block" %>
-    <%= form.text_field :brand, class: "w-100 form-control" %>
+    <%= form.select :product_type, ["Caps", "Pins", "Cases"], {}, class: "w-100 form-control", data: { target: "product-form.productType" } %>
   </div>
 
   <div class="my-3">
-    <%= form.label :image, class:"form-label mb-2" %>
-    <%= form.file_field :image, class: "form-control" %>
+    <%= form.label :brand_id %>
+    <%= form.collection_select :brand_id, Brand.all, :id, :name, prompt: "Select a Brand" %>
   </div>
 
-  <div>
-    <%= form.label :size, style: "display: block" %>
-    <%= form.text_field :size, class: "w-100 form-control" %>
+  <div class="my-3">
+    <%= form.label :images, "Edit/Add Images" %>
+    <% product.images.each_with_index do |image, index| %>
+      <div class="mb-3">
+        <%= form.label "image_#{index}", "Edit Image #{index + 1}" %>
+        <%= image_tag image, class: "img-thumbnail custom-thumbnail", width: 100, height: 100 %>
+        <%= form.file_field "image_#{index}", class: "form-control-file" %>
+      </div>
+    <% end %>
+    <!-- Solo mostrar el campo de carga de archivos si no hay imágenes adjuntas -->
+    <% unless product.images.attached? %>
+      <%= form.file_field :images, multiple: true, class: "form-control-file" %>
+    <% end %>
   </div>
+
+  <div class="my-3">
+    <%= form.label :size, style: "display: block" %>
+    <%= form.select :size, ["N/A","Small", "Medium", "Large", "Extra Large"], {}, class: "w-100 form-control", id: "size_field", data: { target: "product-form.sizeField" } %>
+  </div>  
 
   <div class="my-3">
     <%= form.label :base_price, style: "display: block" %>
-    <%= form.text_field :base_price, class: "w-100 form-control" %>
+    <%= form.text_field :base_price, class: "w-100 form-control", id: "product_base_price" %>
   </div>
 
   <div>
     <%= form.label :discount, style: "display: block" %>
-    <%= form.text_field :discount, class: "w-100 form-control" %>
-  </div>
-
-  <div class="my-3">
-    <%= form.label :total_price, style: "display: block" %>
-    <%= form.text_field :total_price, class: "w-100 form-control" %>
-  </div>
+    <%= form.text_field :discount, class: "w-100 form-control", id: "product_discount", value: (product.discount || 0) %>
+  </div>  
 
   <div>
     <%= form.label :stock, style: "display: block" %>

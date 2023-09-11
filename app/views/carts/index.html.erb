@@ -11,15 +11,15 @@
                   <th>Product</th>
                   <th>Price</th>
                   <th>Quantity</th>
-                  <th></th>
+                  <th>SubTotal</th>
                 </tr>
               </thead>
               <tbody>
                 <% @line_items.each do |line_item| %>
                   <tr>
                     <td class="align-middle">
-                      <% if line_item.product.image.attached? %>
-                        <%= image_tag rails_blob_path(line_item.product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+                      <% if line_item.product.images.first %>
+                        <%= image_tag rails_blob_path(line_item.product.images.first, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
                       <% else %>
                         No Image
                       <% end %>
@@ -32,6 +32,9 @@
                     </td>
                     <td class="align-middle">
                       <%= line_item.quantity %>
+                    </td>
+                    <td class="align-middle">
+                      <%= line_item.quantity * line_item.product.total_price %>
                     </td>
                     <td class="align-middle">
                       <%= form_with url: remove_product_cart_path(@cart, line_item), method: :delete, data: { confirm: 'Are you sure you want to remove this product from the cart?' } do |form| %>
@@ -55,6 +58,7 @@
 
         <% else %>
           <p class="text-center mt-5">Your cart is empty.</p>
+          <%= link_to 'Continue Shopping', products_path, class: 'btn btn-outline-primary text-uppercase fw-bold my-2 col-8 col-md-4' %>
         <% end %>
     </div>
   </div>

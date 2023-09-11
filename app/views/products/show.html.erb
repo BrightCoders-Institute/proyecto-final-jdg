@@ -17,16 +17,21 @@
       </thead>
       <tbody>
         <tr>
-          <td class="align-middle">Image</td>
+          <td class="align-middle">Images</td>
           <td>
-            <% if @product.image.attached? %>
-              <%= image_tag rails_blob_path(@product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+            <% if @product.images.attached? %>
+              <div class="row">
+                <% @product.images.each do |image| %>
+                  <div class="col-md-4 mb-3">
+                    <%= image_tag rails_blob_path(image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+                  </div>
+                <% end %>
+              </div>
             <% else %>
-              No Image
+              No Images
             <% end %>
           </td>
         </tr>
-        <tr>
           <td class="align-middle" class="align-middle">Name</td>
           <td><%= @product.name %></td>
         </tr>
@@ -34,18 +39,17 @@
           <td class="align-middle">Description</td>
           <td><%= @product.description %></td>
         </tr>
-        <tr>
-          <td class="align-middle">Product Type</td>
-          <td><%= @product.product_type %></td>
-        </tr>
+        <%if @product.product_type == 'Caps' %>
         <tr>
           <td class="align-middle">Brand</td>
-          <td><%= @product.brand %></td>
+          <td><%= @product.brand.name %></td>
         </tr>
         <tr>
           <td class="align-middle">Size</td>
           <td><%= @product.size %></td>
         </tr>
+        <% end %>
+        <% if current_user.usertype == 'admin' %>
         <tr>
           <td class="align-middle">Base Price</td>
           <td><%= @product.base_price %></td>
@@ -55,16 +59,17 @@
           <td><%= @product.discount %></td>
         </tr>
         <tr>
-          <td class="align-middle">Total Price</td>
-          <td><%= @product.total_price %></td>
-        </tr>
-        <tr>
           <td class="align-middle">Stock</td>
           <td><%= @product.stock %></td>
         </tr>
         <tr>
           <td class="align-middle">Availability</td>
           <td><%= @product.availability %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td class="align-middle">Total Price</td>
+          <td><%= @product.total_price %></td>
         </tr>
       </tbody>
     </table>
