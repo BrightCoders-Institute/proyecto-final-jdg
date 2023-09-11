@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :cart?, only: :show
   before_action :find_product, only: %i[add_to_cart]
-  before_action :load_common_data, only: %i[show checkout index ]
+  before_action :load_common_data, only: %i[show checkout index]
 
   def add_to_cart
     @cart = current_user.cart || current_user.create_cart
@@ -37,8 +37,7 @@ class CartsController < ApplicationController
     
     if request.post?
       selected_address = Address.find(params[:address_id])
-      order = current_user.orders.create(address: selected_address, total_price: @total_price)
-      
+      order = current_user.orders.create(address: selected_address, total_price: @total_price, status: "pending")
       @cart.line_items.each do |line_item|
         order.order_items.create(
           product: line_item.product,

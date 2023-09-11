@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_155911) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_211403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_155911) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.json "images"
+  end
+
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -88,6 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_155911) do
     t.decimal "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -96,8 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_155911) do
     t.string "name"
     t.text "description"
     t.string "product_type"
-    t.string "brand"
-    t.string "image"
+    t.json "image", default: []
     t.string "size"
     t.decimal "base_price"
     t.decimal "discount"
@@ -106,6 +113,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_155911) do
     t.boolean "availability"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "brand_id", null: false
+    t.index ["brand_id"], name: "index_products_on_brand_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -138,4 +147,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_155911) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "brands"
 end

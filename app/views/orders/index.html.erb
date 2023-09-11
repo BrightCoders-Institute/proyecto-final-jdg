@@ -1,18 +1,29 @@
-<h1>Your Orders</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Total Price</th>
-      <th>View Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= number_to_currency(order.total_price) %></td>
-        <td><%= link_to 'View Details', order_path(order) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="my-md-5 login-heading h2 text-center">Your Orders</h1>
+    </div>
+  </div>
+  <div class="row text-center my-3">
+    <div class="col-md-10 offset-md-1">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Total Price</th>
+              <th>View Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+              <tr>
+                <td><%= number_to_currency(order.total_price) %></td>
+                <td><%= link_to 'View Details', order_path(order), class: 'btn btn-sm btn-outline-primary' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

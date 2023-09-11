@@ -8,7 +8,6 @@
     <!--BOOTSTRAP -->
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_importmap_tags %>
-    <script src="<your-kit-code>" data-mutate-approach="sync"></script>
   </head>
 
   <body>
@@ -17,6 +16,5 @@
     <%= render partial: "partials/layout/navbar" unless devise_controller? %>
     <%= yield %>
     <%= render partial: "partials/layout/footer" unless devise_controller? %>
-    <%= javascript_include_tag "navbar", "data-turbolinks-track" => true  %>
   </body>
 </html>

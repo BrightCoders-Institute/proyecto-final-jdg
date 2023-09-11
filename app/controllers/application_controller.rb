@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  helper Ransack::Helpers::FormHelper
   def admin?
     if current_user && current_user.usertype != 'admin'
       redirect_to root_path
+      end
     end
-  end
 
   def customer?
     if current_user && current_user.usertype != 'customer'
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    products_path # Ruta a la que deseas redirigir después del inicio de sesión exitoso
+    root_path # Ruta a la que deseas redirigir después del inicio de sesión exitoso
   end
 
   def configure_permitted_parameters
