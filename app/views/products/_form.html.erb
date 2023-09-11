@@ -1,4 +1,4 @@
-<%= form_with(model: product) do |form| %>
+<%= form_with(model: product, data: { controller: "product-form" }) do |form| %>
   <% if product.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="my-3">
     <%= form.label :name, style: "display: block " %>
     <%= form.text_field :name, class: "w-100 form-control" %>
@@ -21,17 +20,15 @@
     <%= form.text_area :description, class: "w-100 form-control" %>
   </div>
 
-  <div class="my-3">
+  <div class="my-3" data-controller="productna">
     <%= form.label :product_type, style: "display: block" %>
-    <%= form.select :product_type, ["Caps", "Pins", "Cases"], {}, class: "w-100 form-control" %>
+    <%= form.select :product_type, ["Caps", "Pins", "Cases"], {}, class: "w-100 form-control", data: { target: "product-form.productType" } %>
   </div>
-  
 
   <div class="my-3">
     <%= form.label :brand_id %>
     <%= form.collection_select :brand_id, Brand.all, :id, :name, prompt: "Select a Brand" %>
   </div>
-  
 
   <div class="my-3">
     <%= form.label :images, "Edit/Add Images" %>
@@ -48,10 +45,10 @@
     <% end %>
   </div>
 
-  <div>
+  <div class="my-3">
     <%= form.label :size, style: "display: block" %>
-    <%= form.select :size, ["Small", "Medium", "Large", "Extra Large"], {}, class: "w-100 form-control" %>
-  </div>
+    <%= form.select :size, ["N/A","Small", "Medium", "Large", "Extra Large"], {}, class: "w-100 form-control", id: "size_field", data: { target: "product-form.sizeField" } %>
+  </div>  
 
   <div class="my-3">
     <%= form.label :base_price, style: "display: block" %>
@@ -60,13 +57,8 @@
 
   <div>
     <%= form.label :discount, style: "display: block" %>
-    <%= form.text_field :discount, class: "w-100 form-control", id: "product_discount" %>
-  </div>
-
-  <div class="my-3">
-    <%= form.label :total_price, style: "display: block" %>
-    <%= form.text_field :total_price, class: "w-100 form-control", readonly: true, id: "calculated_total_price" %>
-  </div>
+    <%= form.text_field :discount, class: "w-100 form-control", id: "product_discount", value: (product.discount || 0) %>
+  </div>  
 
   <div>
     <%= form.label :stock, style: "display: block" %>
@@ -82,24 +74,3 @@
     <%= form.submit class: "btn custom-button text-uppercase fw-bold mt-3 " %>
   </div>
 <% end %>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const basePriceInput = document.getElementById("product_base_price");
-    const discountInput = document.getElementById("product_discount");
-    const totalPriceInput = document.getElementById("calculated_total_price");
-
-    function updateTotalPrice() {
-      const basePrice = parseFloat(basePriceInput.value);
-      const discount = parseFloat(discountInput.value);
-
-      if (!isNaN(basePrice) && !isNaN(discount)) {
-        const totalPrice = (basePrice * (1 - discount / 100)).toFixed(2);
-        totalPriceInput.value = totalPrice;
-      }
-    }
-
-    basePriceInput.addEventListener("input", updateTotalPrice);
-    discountInput.addEventListener("input", updateTotalPrice);
-  });
-</script>

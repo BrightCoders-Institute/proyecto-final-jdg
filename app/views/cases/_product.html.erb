@@ -1,0 +1,87 @@
+<!-- Versión para vista móvil (vertical) -->
+<tr class="d-md-none">
+  <td colspan="2" class="align-middle">
+    <% if product.images.first %>
+      <%= image_tag rails_blob_path(product.images.first, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+    <% else %>
+      No Image
+    <% end %>
+  </td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Name:</strong></td>
+  <td class="align-middle"><%= product.name %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Description:</strong></td>
+  <td class="align-middle"><%= product.description %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Product type:</strong></td>
+  <td class="align-middle"><%= product.product_type %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Brand:</strong></td>
+  <td class="align-middle"><%= product.brand %></td>
+</tr>
+<tr class="d-md-none" data-controller="productna">
+  <td class="align-middle"><strong>Size:</strong></td>
+  <td class="align-middle"><%= product.size %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Base price:</strong></td>
+  <td class="align-middle"><%= product.base_price %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Discount:</strong></td>
+  <td class="align-middle"><%= product.discount %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Total price:</strong></td>
+  <td class="align-middle"><%= product.total_price %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Stock:</strong></td>
+  <td class="align-middle"><%= product.stock %></td>
+</tr>
+<tr class="d-md-none">
+  <td class="align-middle"><strong>Availability:</strong></td>
+  <td class="align-middle"><%= product.availability %></td>
+</tr>
+<tr class="d-md-none">
+  <td colspan="2" class="align-middle">
+    <%= form_tag add_to_cart_product_path(product), method: :post do %>
+      <%= submit_tag 'Add to Cart', class: 'btn btn-primary btn-sm' %>
+    <% end %>
+  </td>
+</tr>
+<tr class="d-md-none">
+  <td colspan="2" class="align-middle"><%= link_to "Show", product %></td>
+</tr>
+
+<!-- Versión para vista de escritorio (horizontal) -->
+<tr class="d-none d-md-table-row">
+  <td>
+    <% if product.images.first %>
+      <%= image_tag rails_blob_path(product.images.first, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+    <% else %>
+      No Image
+    <% end %>
+  </td>
+  <td class="align-middle"><%= product.name %></td>
+  <td class="align-middle"><%= product.description %></td>
+  <td class="align-middle"><%= product.product_type %></td>
+  <td class="align-middle"><%= product.brand.name %></td>
+  <td class="align-middle"><%= product.size %></td>
+  <td class="align-middle"><%= product.base_price %></td>
+  <td class="align-middle"><%= product.discount %></td>
+  <td class="align-middle"><%= product.total_price %></td>
+  <td class="align-middle"><%= product.stock %></td>
+  <td class="align-middle"><%= product.availability %></td>
+  <td class="align-middle">
+    <%= form_tag add_to_cart_product_path(product), method: :post do %>
+      <%= submit_tag 'Add to Cart', class: 'btn btn-primary' %>
+    <% end %>
+  </td>
+  <td class="align-middle"><%= link_to "Show", product %></td>
+</tr>

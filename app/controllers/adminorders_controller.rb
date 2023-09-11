@@ -1,8 +1,10 @@
 class AdminordersController < ApplicationController
   before_action :admin?
   before_action :find_order, only: %i[show edit update]
+
   def index
-    @orders = Order.all
+    @q = Order.ransack(params[:q])
+    @orders = @q.result(distinct: true)
   end
 
   def show; end
