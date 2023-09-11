@@ -1,9 +1,10 @@
 class AddressesController < ApplicationController
   before_action :customer?, only: %i[index edit update destroy create new]
   before_action :set_address, only: %i[edit update destroy]
+
   def index
     @addresses = Address.all
-    render 'addresses/_index'
+    redirect_to addresses_path
   end
 
   def new
