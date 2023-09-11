@@ -1,13 +1,19 @@
-<div class="container mt-5">
-  <h1>Edit Order</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="my-5 login-heading fw-medium fs-1 fw-light text-center">Edit Order</h1>
 
-  <%= form_for @order, url: adminorder_path(@order), method: :patch do |f| %>
-    <div class="form-group">
-      <%= f.label :status, class: "font-weight-bold" %>
-      <%= f.select :status, Order.statuses.keys.map { |s| [s.humanize, s] }, {}, class: "form-control" %>
+      <%= form_for @order, url: adminorder_path(@order), method: :patch do |f| %>
+        <div class="form-group">
+          <%= f.label :status, class: "font-weight-bold" %>
+          <%= f.select :status, Order.statuses.keys.map { |s| [s.humanize, s] }, {}, class: "form-control" %>
+        </div>
+
+        <div class="text-center my-5">
+          <%= f.submit "Update Order", class: "btn btn-primary" %>
+          <%= link_to 'Back to Orders', adminorders_path, class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
     </div>
-    <%= f.submit "Update Order", class: "btn btn-primary" %>
-  <% end %>
-
-  <%= link_to 'Back to Orders', adminorders_path, class: 'btn btn-secondary mt-3' %>
+  </div>
 </div>

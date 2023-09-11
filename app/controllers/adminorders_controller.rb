@@ -3,8 +3,11 @@ class AdminordersController < ApplicationController
   before_action :find_order, only: %i[show edit update]
 
   def index
-    @q = Order.ransack(params[:q])
-    @orders = @q.result(distinct: true)
+    if current_user && current_user.usertype == 'admin'
+      @orders = Order.all
+    else
+      redirect_to root_path
+    end
   end
 
   def show; end
