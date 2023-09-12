@@ -2,14 +2,15 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper Ransack::Helpers::FormHelper
   def admin?
-    unless current_user.usertype == 'admin'
+    if current_user && current_user.usertype != 'admin'
       redirect_to root_path
       end
     end
 
   def customer?
-    unless current_user.usertype == 'customer'
-      redirect_to products_path
+    if current_user && current_user.usertype != 'customer'
+      puts "Redirecting to products_path"
+      redirect_to products_path unless action_name == 'show'
     end
   end
 

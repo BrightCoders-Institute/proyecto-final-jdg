@@ -1,86 +1,122 @@
-<p style="color: green" class="text-center mt-3"><%= notice %></p>
-<%= form_tag add_to_cart_product_path(@product), method: :post do %>
-  <%= submit_tag 'Add to Cart', class: 'btn btn-primary' %>
-<% end %>
 <div class="container">
   <div class="row text-center">
-    <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Product Details</h1>
+    <% if current_user && current_user.usertype == 'admin' %>
+      <!-- Admin content-->
+      <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Product Details</h1>
+      <div class="row col-10 offset-1">
+        <table class="table table-bordered text-center">
+          <thead>
+            <tr>
+              <th>Attribute</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="align-middle">Image</td>
+              <td>
+                <% if @product.image.attached? %>
+                  <%= image_tag rails_blob_path(@product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+                <% else %>
+                  <%= image_tag "no-image@2x.png", class: "img-thumbnail img-fluid", width: "80%" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="align-middle">Name</td>
+              <td><%= @product.name %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Description</td>
+              <td><%= @product.description %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Product Type</td>
+              <td><%= @product.product_type %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Brand</td>
+              <td><%= @product.brand %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Size</td>
+              <td><%= @product.size %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Base Price</td>
+              <td><%= @product.base_price %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Discount</td>
+              <td><%= @product.discount %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Total Price</td>
+              <td><%= @product.total_price %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Stock</td>
+              <td><%= @product.stock %></td>
+            </tr>
+            <tr>
+              <td class="align-middle">Availability</td>
+              <td><%= @product.availability %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
   </div>
 
-  <div class="row col-10 offset-1">
-    <table class="table table-bordered text-center ">
-      <thead>
-        <tr>
-          <th>Attribute</th>
-          <th>Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="align-middle">Images</td>
-          <td>
-            <% if @product.images.attached? %>
-              <div class="row">
-                <% @product.images.each do |image| %>
-                  <div class="col-md-4 mb-3">
-                    <%= image_tag rails_blob_path(image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
-                  </div>
-                <% end %>
-              </div>
-            <% else %>
-              No Images
-            <% end %>
-          </td>
-        </tr>
-          <td class="align-middle" class="align-middle">Name</td>
-          <td><%= @product.name %></td>
-        </tr>
-        <tr>
-          <td class="align-middle">Description</td>
-          <td><%= @product.description %></td>
-        </tr>
-        <%if @product.product_type == 'Caps' %>
-        <tr>
-          <td class="align-middle">Brand</td>
-          <td><%= @product.brand.name %></td>
-        </tr>
-        <tr>
-          <td class="align-middle">Size</td>
-          <td><%= @product.size %></td>
-        </tr>
-        <% end %>
-        <% if current_user.usertype == 'admin' %>
-        <tr>
-          <td class="align-middle">Base Price</td>
-          <td><%= @product.base_price %></td>
-        </tr>
-        <tr>
-          <td class="align-middle">Discount</td>
-          <td><%= @product.discount %></td>
-        </tr>
-        <tr>
-          <td class="align-middle">Stock</td>
-          <td><%= @product.stock %></td>
-        </tr>
-        <tr>
-          <td class="align-middle">Availability</td>
-          <td><%= @product.availability %></td>
-        </tr>
-        <% end %>
-        <tr>
-          <td class="align-middle">Total Price</td>
-          <td><%= @product.total_price %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
   <div class="text-center my-5">
-    <% if current_user.usertype == 'admin' %>
-    <%= link_to "Edit this product", edit_product_path(@product), class: "btn custom-button  text-uppercase fw-bold mx-md-3" %> |
-    <%= button_to "Destroy this product", @product, method: :delete, class: "btn btn-danger my-3 text-uppercase fw-bold" %>
+    <!-- Links and buttons for administrators -->
+      <% if current_user && current_user.usertype == 'admin' %>
+      <%= link_to "Edit this product", edit_product_path(@product), class: "btn custom-button text-uppercase fw-bold mx-md-3" %>
+      <%= button_to "Destroy this product", @product, method: :delete, class: "btn btn-danger my-3 text-uppercase fw-bold" %>
+    <% else %>
+      <p style="color: green" class="text-center mt-3"><%= notice %></p>
+
+      <!-- Customer view-->
+      <div class="container">
+        <div class="row my-5">
+          <div class="col-7 text-center">
+            <% if @product.image.attached? %>
+              <%= image_tag rails_blob_path(@product.image, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "80%" %>
+            <% else %>
+              <%= image_tag "no-image@2x.png", class: "img-thumbnail img-fluid", width: "80%" %>
+            <% end %>
+          </div>
+          <div class="col-5">
+            <div class="row mb-5">
+              <h1>
+                <%= @product.name %>
+              </h1>
+              <h2>
+                $ <%= @product.total_price %>
+              </h2>
+              <hr>
+            </div>
+            <div class="row">
+              <span> <strong>DESCRIPTION: </strong><%= @product.description %></span>
+            </div>
+            <div class="row">
+              <span> <strong>PRODUCT TYPE: </strong><%= @product.product_type %></span>
+            </div>
+            <div class="row">
+              <span>  <strong>BRAND:</strong><%= @product.brand %></span>
+            </div>
+            <div class="row">
+              <span><strong>SIZE: </strong><%= @product.size %></span>
+            </div>
+            <div class=" mt-4">
+              <%= form_tag add_to_cart_product_path(@product), method: :post do %>
+                <%= submit_tag 'Add to Cart', class: 'btn btn-dark col-6' %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
     <% end %>
-    <%= link_to "Back to products", products_path, class: "btn btn-secondary text-uppercase fw-bold mx-md-3" %>
-  
   </div>
 </div>

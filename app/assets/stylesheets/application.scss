@@ -87,5 +87,18 @@ body {
    }
 }
 
- // **END**//
- 
+.product {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+
+  img {
+    height: 400px;
+    max-width: 100%;
+  }
+
+  h2 {
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+}

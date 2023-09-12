@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :admin?, only: %i[edit update destroy create new]
-  before_action :set_product, only: %i[show edit update destroy]
-  before_action :authenticate_user!
+  before_action :admin?, only: %i[ edit update destroy create new]
+  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:show]
 
   def add_to_cart
     @product = Product.find(params[:id])
@@ -37,6 +37,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
+    @product = Product.find(params[:id])
   end
 
   # GET /products/new
