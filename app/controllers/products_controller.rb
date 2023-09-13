@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
 
     if line_item.save
       redirect_to session[:last_view], alert: 'Product added to cart.'
-     else
+    else
       redirect_to @product, alert: 'Failed to add product to cart.'
     end
   end
@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Product.paginate(page: params[:page], per_page: 3) # Mostrar 3 productos por página
   end
 
   # GET /products/1 or /products/1.json
@@ -92,6 +92,4 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :description, :product_type, :brand_id, :size, :base_price, :discount, :stock, :availability, images: [])
   end
-  
-  
 end
