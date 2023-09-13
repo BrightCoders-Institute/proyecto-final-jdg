@@ -1,1 +1,35 @@
-<p>Hola compa</p>
+<p>You got a new order from <%= @order.user.full_name %>!</p>
+<p>
+  Order details<br>
+  <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td>
+        <%= order_item.product.name %>
+      </td>
+      <td>
+        <%= number_to_currency(order_item.price) %>
+      </td>
+      <td class="text-center">
+        <%= order_item.quantity %>
+      </td>
+      <td>
+        <%= number_to_currency(order_item.price * order_item.quantity) %>
+      </td>
+    </tr>
+    <% end %>
+    <p>
+      Total price <%= @order.total_price %>
+    </p>
+</p>
+<p>Name: <%= @order.user.full_name %>
+</p>
+<p>Email: <%= @order.user.email %>
+</p>
+<p>Address: <%= @order.address.city %>
+</p>
+<p>Phone: <%= @order.address.phone_number %>
+</p>
+<p>
+  Message:<br>
+  ----------
+</p>
