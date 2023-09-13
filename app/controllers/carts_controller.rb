@@ -45,7 +45,7 @@ class CartsController < ApplicationController
           price: line_item.product.total_price
         )
       end
-      
+      OrderMailer.new_order_mail(order).deliver_now
       @cart.destroy
       redirect_to orders_path, notice: 'Order placed successfully.'
     end
