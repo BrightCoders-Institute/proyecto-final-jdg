@@ -1,6 +1,21 @@
 class OrderMailer < ApplicationMailer
-  def new_order_mail(order)
+  def order_mail(order)
     @order = order
-    mail(to: 'cruzhugo1997@gmail.com', subject: "You have a new order")
+    mail(to: @order.user.email, subject: 'You have a new order')
+  end
+
+  def processing_order_mail(order)
+    @order = order
+    mail(to: @order.user.email, subject: 'Your order has been accepted and is in progress')
+  end
+
+  def cancelled_order_mail(order)
+    @order = order
+    mail(to: @order.user.email, subject: 'Your order cannot be completed')
+  end
+
+  def completed_order_mail(order)
+    @order = order
+    mail(to: @order.user.email, subject: 'Your order has been delivered')
   end
 end

@@ -14,6 +14,14 @@ class AdminordersController < ApplicationController
   def update
     if @order.update(order_params)
       redirect_to adminorder_path(@order), notice: 'Order status updated successfully.'
+      case @order.status
+      when 'cancelled'
+        OrderMailer.cancelled_order_mail(@order).deliver_now
+      when 'completed'
+        OrderMailer.completed_order_mail(@order).deliver_now
+      when 'processing'
+        OrderMailer.processing_order_mail(@order).deliver_now
+      end
     else
       render :edit
     end
