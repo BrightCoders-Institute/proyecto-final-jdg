@@ -1,7 +1,13 @@
 class AdminordersController < ApplicationController
+  before_action :admin?
   before_action :find_order, only: %i[show edit update]
+
   def index
-    @orders = Order.all
+    if current_user && current_user.usertype == 'admin'
+      @orders = Order.all
+    else
+      redirect_to root_path
+    end
   end
 
   def show; end
