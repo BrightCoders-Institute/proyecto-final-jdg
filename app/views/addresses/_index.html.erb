@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="text-center">
-    <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Address List</h1>
+  <div class="row text-center">
+    <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Shipping Addresses</h1>
   </div>
   <div class="my-5">
     <%= link_to 'New Address', new_address_path, class: "btn btn-login text-uppercase fw-bold"  %>
@@ -38,11 +38,8 @@
             </td>
             <td class="d-none d-md-table-cell">
               <div class="btn-group">
-                <%= link_to edit_address_path(address), class: "btn btn-primary" do %>
-                  <i class="fas fa-edit"></i> Edit
-                <% end %>
-                <%= link_to address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" do %>
-                  <i class="fas fa-trash"></i> Delete
+                <%= link_to edit_address_path(address), class: "btn btn-primary btn-sm" do %>
+                  <i class="fas fa-eye"></i> Details
                 <% end %>
               </div>
             </td>
@@ -52,12 +49,9 @@
               <strong>ZIP Code:</strong> <%= address.zip_code %><br>
               <strong>Address:</strong> <%= address.address %><br>
               <strong>Phone Number:</strong> <%= address.phone_number %><br>
-              <div class="btn-group mt-2">
-                <%= link_to edit_address_path(address), class: "btn btn-primary" do %>
-                  <i class="fas fa-edit"></i> Edit
-                <% end %>
-                <%= link_to address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" do %>
-                  <i class="fas fa-trash"></i> Delete
+              <div class="mt-2">
+                <%= link_to edit_address_path(address), class: "btn btn-primary btn-sm" do %>
+                  <i class="fas fa-eye"></i> Details
                 <% end %>
               </div>
             </td>
