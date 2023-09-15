@@ -1,19 +1,25 @@
 <div class="container">
-  <div class="row">
-    <h1 class="mt-2 mt-md-5 login-heading h2 text-center">Order Details</h1>
+  <div class="row text-center">
+    <h1 class="login-heading mb-4 fw-medium fs-1 fw-light my-md-5">Order Details</h1>
   </div>
 
   <div class="row my-4">
     <div class="col-md-6 offset-md-3">
       <div class="card mb-4">
         <div class="card-body">
-          <h2 class="h5 mb-4">Shipping Address</h2>
+          <h2 class="login-heading fw-medium fs-3 fw-light">Order Number</h2>
+          <p><%= @order.id %></p>
+
+          <h2 class="login-heading fw-medium fs-3 fw-light">Order Date</h2>
+          <p><%= @order.created_at %></p>
+
+          <h2 class="login-heading fw-medium fs-3 fw-light">Shipping Address</h2>
           <p><%= @order.address.full_address %></p>
 
-          <h2 class="h5 mb-4">Status</h2>
+          <h2 class="login-heading fw-medium fs-3 fw-light">Status</h2>
           <p><%= @order.status %></p>
 
-          <h2 class="h5 mb-4">Order Summary</h2>
+          <h2 class="login-heading fw-medium fs-2 fw-light text-center mb-3">Order Summary</h2>
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -45,7 +51,7 @@
         </div>
       </div>
 
-      <%= link_to 'Back to Orders', orders_path, class: 'btn btn-primary d-block mx-auto col-6' %>
+      <%= link_to "Back to Profile", user_path(current_user), class: 'btn btn-primary d-block mx-auto col-6' %>
     </div>
   </div>
 </div>
