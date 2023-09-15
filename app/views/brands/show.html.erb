@@ -9,7 +9,7 @@
     <div class="alert alert-success" role="alert">
       <%= notice %>
     </div>
-    
+
     <div class="card mb-4">
       <div class="card-body">
         <%= render @brand %>
@@ -30,10 +30,12 @@
     <div class="mb-3">
       <%= link_to "Edit this brand", edit_brand_path(@brand), class: "btn btn-primary" %> |
       <%= link_to "Back to brands", brands_path, class: "btn btn-secondary" %>
-      
+
       <%= button_to "Destroy this brand", @brand, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     </div>
   </div>
 
 </body>
 </html>
+
+
