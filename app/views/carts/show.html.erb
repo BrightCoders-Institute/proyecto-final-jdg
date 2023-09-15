@@ -50,6 +50,10 @@
         <div class="d-flex justify-content-center my-3">
           <%= submit_tag 'Place Order', class: 'btn btn-primary text-uppercase fw-bold col-8 col-md-4' %>
         </div>
+
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<%= Rails.application.credentials.development[:publishable_key] %>" data-description="Unique payment"
+        data-amount="<%= @total_price %>" data-locale="auto"></script>
       <% end %>
     </div>
   </div>
