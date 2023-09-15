@@ -1,39 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Brand Details</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container mt-5">
-    <div class="alert alert-success" role="alert">
-      <%= notice %>
-    </div>
-    
-    <div class="card mb-4">
-      <div class="card-body">
-        <%= render @brand %>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <strong>Images:</strong>
-      <div class="row">
-        <% @brand.images.each do |image| %>
-          <div class="col-md-3 mb-3">
-            <%= image_tag image, class: "img-fluid" %>
+<div class="container mt-5">
+  <div class="row my-md-5">
+    <div class="col-md-8 mx-auto">
+      <div class="card rounded-3">
+        <div class="card-header text-center uppercase">
+          <strong class="text-uppercase"><%= @brand.name %></strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <% @brand.images.each do |image| %>
+              <div class="">
+                <%= image_tag image, class: "img-fluid" %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+        </div>
+        <div class="card-footer d-flex flex-column flex-md-row justify-content-md-around">
+          <%= link_to "Edit this brand", edit_brand_path(@brand), class: "btn btn-primary mb-2 mb-md-0" %>
+          <%= link_to "Back to brands", brands_path, class: "btn btn-secondary mb-2 mb-md-0" %>
+          <%= button_to "Destroy this brand", @brand, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger mb-2 mb-md-0" %>
+        </div>
       </div>
-    </div>
-
-    <div class="mb-3">
-      <%= link_to "Edit this brand", edit_brand_path(@brand), class: "btn btn-primary" %> |
-      <%= link_to "Back to brands", brands_path, class: "btn btn-secondary" %>
-      
-      <%= button_to "Destroy this brand", @brand, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     </div>
   </div>
-
-</body>
-</html>
+</div>

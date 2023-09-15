@@ -1,33 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Brands</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container mt-5">
-    <div class="alert alert-success" role="alert">
-      <%= notice %>
-    </div>
-    
-    <h1>Brands</h1>
+<div class="container mt-5">
+  <h1 class="text-center login-heading mb-4 fw-medium fs-1 fw-light">Brands</h1>
+  <div id="brands">
+    <div class="row">
+      <% @brands.each do |brand| %>
+        <div class="col-md-4 mb-4">
+          <div class="card rounded-3 h-100 d-flex flex-column align-items-center">
+            <% brand.images.each do |image| %>
+              <div class="mt-md-2 mx-md-2 mb-3">
+                <%= image_tag image, class: "img-fluid" %>
+              </div>
+            <% end %>
 
-    <div id="brands">
-      <div class="row">
-        <% @brands.each do |brand| %>
-          <div class="col-md-6 mb-4">
-            <%= render brand %>
-            <p class="mt-2">
-              <%= link_to "Show this brand", brand, class: "btn btn-info" %>
-            </p>
+            <div class="card-body text-center justify-content-center overflow-auto my-card-body">
+              <%= render brand %>
+              <p class="card-text">
+                <%= link_to "Show this brand", brand, class: "btn btn-primary btn-sm" %>
+              </p>
+            </div>
           </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="mt-3">
-      <%= link_to "New brand", new_brand_path, class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
   </div>
-</body>
-</html>
+
+  <div class="my-3 text-center">
+    <%= link_to "New brand", new_brand_path, class: "btn btn-login text-uppercase fw-bold" %>
+  </div>
+</div>
