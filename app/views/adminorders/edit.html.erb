@@ -14,7 +14,7 @@
         </div>
 
         <div class="text-center my-5">
-          <%= f.submit "Update Order", class: "btn btn-primary" %>
+          <%= f.submit "Update Order", data:{ turbo_method: :delete,turbo_confirm: "Are you sure?" }, class: "btn btn-primary" %>
           <%= link_to 'Back to Orders', adminorders_path, class: 'btn btn-secondary' %>
         </div>
       <% end %>
