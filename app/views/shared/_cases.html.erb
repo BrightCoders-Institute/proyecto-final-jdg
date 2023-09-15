@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row mb-5">
+    <%= render partial: "shared/cases_banner" %>
     <% @products.each do |product| %>
-      <% if product.product_type == 'Caps' %>
+      <% if product.product_type == 'Cases' %>
         <div class="col-md-3">
           <div class="product">
             <%= link_to product_path(product), class: "text-decoration-none text-black" do %>

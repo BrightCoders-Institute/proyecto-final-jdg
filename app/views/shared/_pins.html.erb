@@ -1,5 +1,5 @@
 <div class="container">
-  <%= render partial: "partials/Banners/PinsBanner" %>
+  <%= render partial: "shared/pins_banner" %>
   <div class="row mb-5">
     <% @products.each do |product| %>
       <% if product.product_type == 'Pins' %>
