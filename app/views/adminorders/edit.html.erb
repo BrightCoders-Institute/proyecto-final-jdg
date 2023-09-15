@@ -6,8 +6,11 @@
       <%= form_for @order, url: adminorder_path(@order), method: :patch do |f| %>
         <div class="form-group">
           <%= f.label :status, class: "font-weight-bold" %>
-          <% status_value = @order.status.upcase if @order.status.in?(["completed", "cancelled"]) %>
-          <%= f.text_field :status, value: status_value, class: "form-control", disabled: true %>
+          <% if @order.status == "completed" || @order.status == "cancelled" %>
+            <%= f.text_field :status, value: @order.status.upcase, class: "form-control", disabled: true %>
+          <% else %>
+            <%= f.select :status, Order.statuses.keys.map { |s| [s.humanize, s] }, {}, class: "form-control" %>
+          <% end %>
         </div>
 
         <div class="text-center my-5">
