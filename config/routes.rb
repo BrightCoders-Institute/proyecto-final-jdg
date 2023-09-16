@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admin_view/index'
   devise_for :users
 
   resources :users, only: [:show, :edit, :update], path: 'profile'
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   resources :pins
   resources :cases
 
+  get 'home/index'
   get 'faqs/index'
   get 'about/index'
 end

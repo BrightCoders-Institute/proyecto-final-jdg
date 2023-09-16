@@ -33,6 +33,11 @@
           <li class="nav-item underline">
             <%= link_to 'FAQs' , faqs_index_path, class: "nav-link#{' active' if current_page?(faqs_index_path)}" %>
           </li>
+          <% if user_signed_in? && current_user.usertype == "admin" %>
+          <li class="nav-item underline">
+            <%= link_to 'Admin Panel' , admin_view_index_path, class: "nav-link#{' active' if current_page?(admin_view_index_path)}" %>
+          </li>
+          <% end %>
         </ul>
         <div class="text-center d-flex justify-content-between gap-4">
           <div class="row align-content-center">

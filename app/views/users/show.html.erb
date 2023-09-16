@@ -15,11 +15,17 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
-      <%= render 'addresses/index' %>
-    </div>
-    <div class="col-md-6">
-      <%= render 'orders/index' %>
-    </div>
+    <% if @user.usertype == "admin" %>
+      <div class="row">
+        <%= render 'orders/index' %>
+      </div>
+      <%else %>
+      <div class="col-md-6">
+        <%= render 'orders/index' %>
+      </div>
+      <div class="col-md-6">
+        <%= render 'addresses/index' %>
+      </div>
+    <%end%>
   </div>
 </div>

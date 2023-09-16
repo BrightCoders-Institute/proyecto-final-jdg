@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="text-center py-4">Welcome back Admin</h1>
+
+
+  <h2>Where would you want to go?</h2>
+  <div class="container my-5 ">
+    <div class="row gx-5 my-2">
+      <div class="col text-center">
+        <%= button_to "Brands", brands_path, :method => "get", class: "btn btn-dark w-100 h-50 py-4" %>
+      </div>
+
+      <div class="col text-center">
+        <%= button_to "Products", products_path, :method => "get", class: "btn btn-dark w-100 py-4" %>
+      </div>
+    </div>
+    <div class="row gx-5 my-2">
+      <div class="col text-center">
+        <%= button_to "Pending Orders", user_path(current_user), :method => "get", class: "btn btn-dark w-100 h-50 py-4" %>
+      </div>
+      </div>
+  </div>
+</div>

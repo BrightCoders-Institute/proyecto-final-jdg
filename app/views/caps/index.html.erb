@@ -21,7 +21,7 @@
        <%= image_tag(product.images.first, alt: product.name, class: "card-img-top") %>
         <div class="card-body">
           <h5 class="card-title"><%= product.name %></h5>
-          <p class="card-text"><%= number_to_currency(product.base_price) %></p>
+          <p class="card-text"><%= number_to_currency(product.total_price) %></p>
       <% end %>
           <%= form_tag add_to_cart_product_path(product), method: :post do %>
             <%= submit_tag 'Add to Cart', class: 'btn btn-primary button-cart' %>
@@ -34,10 +34,10 @@
 </div>
 
 
-  <% if current_user.usertype == 'admin'%>
+  <% if current_user.usertype == 'admin'%> 
     <div class="text-center my-3">
       <%= link_to "New product", new_product_path, class: "btn custom-button text-uppercase fw-bold" %>
     </div>
-  <% end %>
+  <% end %> 
 </div>
 

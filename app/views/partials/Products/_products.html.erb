@@ -1,19 +1,20 @@
 <div class="container">
-  <h1 class="my-5 login-heading fw-medium fs-1 fw-light text-center">NEW PRODUCTS</h1>
-  <div class="row mb-5">
+  <div class="row grid-design">
     <% @products.each do |product| %>
-      <div class="col-md-3">
-        <div class="product">
-          <%= link_to product_path(product), class: "text-decoration-none text-black" do %>
-            <%= image_tag(product.image, alt: product.name, class: "img-fluid") %>
-            <h2><%= product.name %></h2>
-            <p><%= number_to_currency(product.base_price) %></p>
-          <% end %>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card card-design">
+      <%= link_to product_path(product), class: "text-decoration-none text-black" do %>
+       <%= image_tag(product.images.first, alt: product.name, class: "card-img-top") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name %></h5>
+          <p class="card-text"><%= number_to_currency(product.total_price) %></p>
+      <% end %>
           <%= form_tag add_to_cart_product_path(product), method: :post do %>
-            <%= submit_tag 'Add to Cart', class: 'btn btn-dark col-12' %>
+            <%= submit_tag 'Add to Cart', class: 'btn btn-primary button-cart' %>
           <% end %>
         </div>
       </div>
+    </div>
     <% end %>
   </div>
 </div>
