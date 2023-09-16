@@ -1,20 +1,21 @@
- @import "font-awesome";
+@import "font-awesome";
  @import "bootstrap";
  @import "jquery-ui.css";
 
  @import
- "config/variables.scss",
- "components/buttons.scss",
- "components/login.scss",
- "components/links.scss",
- "components/top-message.scss",
- "components/confirmation.scss",
- "components/registrations.scss",
- "components/passwords.scss",
- "components/banner.scss",
- "components/products.scss",
- "layout/footer.scss",
- "layout/navbar.scss";
+ "config/variables",
+ "components/buttons",
+ "components/login",
+ "components/links",
+ "components/top-message",
+ "components/confirmation",
+ "components/registrations",
+ "components/passwords",
+ "components/banner",
+ "components/products",
+ "components/cart",
+ "layout/footer",
+ "layout/navbar";
 
 body {
   font-family: $font-family-main;
@@ -28,6 +29,7 @@ body {
   position: relative; /* Agrega esta línea */
   z-index: 200;
 }
+
 
  // ** Navbar design **//
 #navbar {
@@ -49,8 +51,12 @@ body {
   cursor: pointer;
  }
 
+ .card-design img:hover{
+  transform: scale(1.2);
+  transition: transform 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+ }
+
  .button-cart{
-  margin-top: 2rem;
   background-color: $black-background;
   color: $white-background;
   border: none;
@@ -76,25 +82,10 @@ body {
   text-decoration: underline;
  }
 
+
  @media (max-width: 767px) {
   .grid-design{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
    }
-}
-
-.product {
-  border: 1px solid #ddd;
-  padding: 15px;
-  text-align: center;
-
-  img {
-    height: 400px;
-    max-width: 100%;
-  }
-
-  h2 {
-    margin-top: 10px;
-    font-size: 1.2em;
-  }
 }
