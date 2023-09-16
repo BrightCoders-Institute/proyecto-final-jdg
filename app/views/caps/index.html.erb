@@ -12,32 +12,32 @@
     <%= submit_tag "Filter", class: "btn btn-primary" %>
   <% end %>
 
-  <div id="products" class="table-responsive">
-    <table class="table table-hover text-center">
-      <thead>
-        <tr class="d-none d-md-table-row">
-          <th></th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Product Type</th>
-          <th>Brand</th>
-          <th>Size</th>
-          <th>Base Price</th>
-          <th>Discount</th>
-          <th>Total Price</th>
-          <th>Stock</th>
-          <th>Availability</th>
-          <th>Show</th>
-        </tr>
-      </thead>
-      <tbody class="text-center">
-        <%= render @products %>
-      </tbody>
-    </table>
+<div class="container">
+  <div class="row grid-design">
+    <% @products.each do |product| %>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card card-design">
+      <%= link_to product_path(product), class: "text-decoration-none text-black" do %>
+       <%= image_tag(product.images.first, alt: product.name, class: "card-img-top") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name %></h5>
+          <p class="card-text"><%= number_to_currency(product.base_price) %></p>
+      <% end %>
+          <%= form_tag add_to_cart_product_path(product), method: :post do %>
+            <%= submit_tag 'Add to Cart', class: 'btn btn-primary button-cart' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
+</div>
+
+
   <% if current_user.usertype == 'admin'%>
     <div class="text-center my-3">
       <%= link_to "New product", new_product_path, class: "btn custom-button text-uppercase fw-bold" %>
     </div>
   <% end %>
 </div>
+

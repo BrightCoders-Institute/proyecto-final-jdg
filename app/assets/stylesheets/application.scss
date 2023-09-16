@@ -49,12 +49,8 @@ body {
   cursor: pointer;
  }
 
- .card-design img:hover{
-  transform: scale(1.2);
-  transition: transform 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
- }
-
  .button-cart{
+  margin-top: 2rem;
   background-color: $black-background;
   color: $white-background;
   border: none;

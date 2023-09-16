@@ -33,3 +33,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#Ignoring the following files to prevent errors in the future, just in this commit, no more then
+app/views/partials/Products/_products.html.erb
+app/models/user.rb
+config/routes.rb
