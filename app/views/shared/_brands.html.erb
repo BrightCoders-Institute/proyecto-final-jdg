@@ -1,0 +1,11 @@
+<div class="container">
+  <% @brands.each do |brand| %>
+    <% if brand.images.attached? %>
+      <% brand.images.each do |image| %>
+        <%= image_tag image, class: "img-fluid" %>
+      <% end %>
+    <% end %>
+
+    <%= render partial: "shared/products_by_brand", locals: { brand: brand } %>
+  <% end %>
+</div>

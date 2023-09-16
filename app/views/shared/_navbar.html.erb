@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg bg-light shadow-sm p-3 bg-body-tertiary rounded">
     <div class="container">
       <a class="navbar-brand col-5 col-md-2 " href="/">
-        <%= image_tag("monkeyHats.webp", class: "rounded-circle w-75 mt-3 mt-md-2"  ) %>
+        <%= image_tag("monkeyHats.webp", class: "rounded-circle w-75 mt-3 mt-md-2") %>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,11 +41,7 @@
             </div>
             <% if user_signed_in? %>
               <div class="col">
-                <% if user_signed_in? %>
-                  <%= link_to '' , addresses_path, class: "fa-solid fa-user color-icon" %>
-                <% else %>
-                  <%= link_to '' , user_session_path, class: "fa-solid fa-user color-icon" %>
-                <% end %>
+                <%= link_to "", user_path(current_user), class: "fa-solid fa-user color-icon" %>
               </div>
             <% end %>
             <div class="col">
@@ -66,6 +62,5 @@
         </div>
       </div>
     </div>
-  </div>
   </nav>
 </div>

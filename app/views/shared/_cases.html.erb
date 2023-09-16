@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row mb-5">
+    <%= render partial: "shared/cases_banner" %>
+    <% @products.each do |product| %>
+      <% if product.product_type == 'Cases' %>
+        <div class="col-md-3">
+          <div class="product">
+            <%= link_to product_path(product), class: "text-decoration-none text-black" do %>
+              <%= image_tag(product.images.first, alt: product.name, class: "img-fluid") %>
+              <h2><%= product.name %></h2>
+              <p><%= number_to_currency(product.base_price) %></p>
+            <% end %>
+            <%= form_tag add_to_cart_product_path(product), method: :post do %>
+              <%= submit_tag 'Add to Cart', class: 'btn btn-dark col-12' %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
