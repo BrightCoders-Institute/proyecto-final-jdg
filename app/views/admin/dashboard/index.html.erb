@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-header text-center">
+          <h1 class="login-heading mb-4 fw-medium fs-1 fw-light my-md-5">Admin Dashboard</h1>
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-md-6">
+              <h2 class="login-heading mb-4 fw-medium fs-2 fw-light">Username:</h2>
+              <p><%= @user.full_name %></p>
+            </div>
+            <div class="col-md-6">
+              <h2 class="login-heading mb-4 fw-medium fs-2 fw-light">Email:</h2>
+              <p><%= @user.email %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="text-center">
+            <%= link_to 'Show Brands', brands_path, class: "btn btn-primary m-2" %>
+            <%= link_to 'Show Products', products_path, class: "btn btn-primary m-2" %>
+          </div>
+          <hr>
+          <div class="row text-center">
+            <div class="col-md-12">
+              <h2 class="login-heading fw-medium fs-3 fw-light">Filter by Order Status:</h2>
+              <%= form_tag admin_dashboard_path, method: :get, class: "form-inline" do %>
+                <%= select_tag :order_status, options_for_select(Order.statuses.map { |status, _value| [status.capitalize, status] }, params[:order_status]), class: "form-control" %>
+                <%= submit_tag "Apply Filter", class: "btn btn-primary mt-3" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <%= render 'adminorders/index' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#index'
+  end
+
   resources :users, only: [:show, :edit, :update], path: 'profile'
 
   root 'home#index'
@@ -22,6 +26,7 @@ Rails.application.routes.draw do
   resources :pins
   resources :cases
 
+  get 'home/index'
   get 'faqs/index'
   get 'about/index'
 end

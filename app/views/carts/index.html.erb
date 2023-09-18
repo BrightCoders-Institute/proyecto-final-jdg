@@ -1,66 +1,65 @@
 <div class="container">
   <h1 class="my-5 login-heading fw-medium fs-1 fw-light text-center">Shopping Cart</h1>
-  <div class="row ">
+  <div class="row">
     <div class="col-md-10 offset-md-1">
       <% if @line_items&.any? %>
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>SubTotal</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @line_items.each do |line_item| %>
                 <tr>
-                  <th></th>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>SubTotal</th>
+                  <td class="align-middle">
+                    <% if line_item.product.images.first %>
+                      <%= image_tag rails_blob_path(line_item.product.images.first, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
+                    <% else %>
+                      No Image
+                    <% end %>
+                  </td>
+                  <td class="align-middle">
+                    <%= line_item.product.name %>
+                  </td>
+                  <td class="align-middle">
+                    <%= line_item.product.total_price %>
+                  </td>
+                  <td class="align-middle">
+                    <%= line_item.quantity %>
+                  </td>
+                  <td class="align-middle">
+                    <%= line_item.quantity * line_item.product.total_price %>
+                  </td>
+                  <td class="align-middle">
+                    <%= form_with url: remove_product_cart_path(@cart, line_item), method: :delete, data: { confirm: 'Are you sure you want to remove this product from the cart?' } do |form| %>
+                      <%= form.submit 'Remove', class: 'btn btn-danger btn-sm' %>
+                    <% end %>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                <% @line_items.each do |line_item| %>
-                  <tr>
-                    <td class="align-middle">
-                      <% if line_item.product.images.first %>
-                        <%= image_tag rails_blob_path(line_item.product.images.first, disposition: "attachment", only_path: true), class: "img-thumbnail img-fluid", width: "100", height: "100" %>
-                      <% else %>
-                        No Image
-                      <% end %>
-                    </td>
-                    <td class="align-middle">
-                      <%= line_item.product.name %>
-                    </td>
-                    <td class="align-middle">
-                      <%= line_item.product.total_price %>
-                    </td>
-                    <td class="align-middle">
-                      <%= line_item.quantity %>
-                    </td>
-                    <td class="align-middle">
-                      <%= line_item.quantity * line_item.product.total_price %>
-                    </td>
-                    <td class="align-middle">
-                      <%= form_with url: remove_product_cart_path(@cart, line_item), method: :delete, data: { confirm: 'Are you sure you want to remove this product from the cart?' } do |form| %>
-                        <%= form.submit 'Remove', class: 'btn btn-danger btn-sm' %>
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="d-flex flex-column bg-light p-3">
-            <p class="text-uppercase fw-bold text-center ">Total Price: <%= number_to_currency(@total_price) %></p>
-          </div>
-         <div class="row d-flex justify-content-center my-md-3">
-          <%= link_to 'Continue Shopping', products_path, class: 'btn btn-outline-primary text-uppercase fw-bold my-2 col-8 col-md-4' %>
-          <%= link_to 'Proceed to Checkout', checkout_path, method: :post, class: 'btn btn-primary text-uppercase fw-bold my-2 col-8 col-md-4 offset-md-2' %>
+              <% end %>
+            </tbody>
+          </table>
         </div>
 
+        <div class="d-flex flex-column bg-light p-3">
+          <p class="text-uppercase fw-bold text-center ">Total Price: <%= number_to_currency(@total_price) %></p>
+        </div>
 
-        <% else %>
-          <p class="text-center mt-5">Your cart is empty.</p>
+        <div class="row d-flex justify-content-center my-md-3">
           <%= link_to 'Continue Shopping', products_path, class: 'btn btn-outline-primary text-uppercase fw-bold my-2 col-8 col-md-4' %>
-        <% end %>
+          <%= link_to 'Proceed to Checkout', checkout_carts_path, method: :post, class: 'btn btn-primary text-uppercase fw-bold my-2 col-8 col-md-4 offset-md-2' %>
+        </div>
+      <% else %>
+        <p class="text-center mt-5">Your cart is empty.</p>
+        <%= link_to 'Continue Shopping', products_path, class: 'btn btn-outline-primary text-uppercase fw-bold my-2 col-8 col-md-4' %>
+      <% end %>
     </div>
   </div>
-
 </div>
