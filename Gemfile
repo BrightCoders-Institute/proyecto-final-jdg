@@ -6,6 +6,9 @@ ruby "3.2.2"
 #Rubycritic
 gem "rubycritic"
 
+#Will paginate
+gem 'will_paginate'
+
 #Rubocop
 gem "rubocop"
 
