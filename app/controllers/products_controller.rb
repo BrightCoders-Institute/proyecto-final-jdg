@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.paginate(page: params[:page], per_page: 3) # Mostrar 3 productos por página
+    @products = Product.paginate(page: params[:page], per_page: 10) # Mostrar 10 productos por página
   end
 
   # GET /products/1 or /products/1.json
