@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row mb-5">
     <% @products.each do |product| %>
-      <div class="col-md-3">
+      <div class="col-6 col-md-3">
         <div class="product">
           <%= link_to product_path(product), class: "text-decoration-none text-black" do %>
-            <%= image_tag(product.images.first, alt: product.name, class: "img-fluid") %>
+            <%= image_tag(product.images.first, alt: product.name, class: "img-fluid img-thumbnail h-75") %>
             <h2><%= product.name %></h2>
             <p><%= number_to_currency(product.base_price) %></p>
           <% end %>
