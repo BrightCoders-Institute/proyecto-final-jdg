@@ -36,9 +36,9 @@ class CartsController < ApplicationController
 
     if request.post?
       selected_address = Address.find(params[:address_id])
-      order = current_user.orders.create(address: selected_address, total_price: @total_price, status: "pending")
+      @order = current_user.orders.create(address: selected_address, total_price: @total_price, status: "pending")
       @cart.line_items.each do |line_item|
-        order.order_items.create(
+        @order.order_items.create(
           product: line_item.product,
           quantity: line_item.quantity,
           price: line_item.product.total_price
@@ -48,6 +48,7 @@ class CartsController < ApplicationController
       @cart.destroy
       redirect_to orders_path, notice: 'Order placed successfully.'
     end
+    OrderMailer.order_mail(@order).deliver_now
   end
 
   def index
