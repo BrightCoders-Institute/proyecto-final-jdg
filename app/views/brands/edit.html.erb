@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Edit Brand</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container mt-5">
-    <h1>Edit Brand</h1>
-    
-    <div class="card mb-4">
-      <div class="card-body">
-        <%= render "form", brand: @brand %>
-      </div>
-    </div>
+<div class="container mt-5">
+  <h1 class="text-center login-heading mb-4 fw-medium fs-1 fw-light">Edit Brand</h1>
 
-    <div class="mb-3 text-center">
-      <%= link_to "Show this brand", @brand, class: "btn btn-info" %> |
-      <%= link_to "Back to brands", brands_path, class: "btn btn-secondary" %>
+  <div class="card mb-4">
+    <div class="card-header">
+      <strong class="text-uppercase">Edit Brand: <%= @brand.name %></strong>
+    </div>
+    <div class="card-body">
+      <%= render "form", brand: @brand %>
     </div>
   </div>
-</body>
-</html>
+
+  <div class="text-center mb-md-4">
+    <%= link_to "Back to brands", brands_path, class: "btn btn-secondary" %>
+  </div>
+</div>

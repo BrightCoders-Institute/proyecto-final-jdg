@@ -41,7 +41,11 @@
             </div>
             <% if user_signed_in? %>
               <div class="col">
-                <%= link_to "", user_path(current_user), class: "fa-solid fa-user color-icon" %>
+                <% if current_user.usertype == "admin" %>
+                  <%= link_to "", admin_dashboard_path, class: "fa-solid fa-user color-icon" %>
+                <% else %>
+                  <%= link_to "", user_path(current_user), class: "fa-solid fa-user color-icon" %>
+                <% end %>
               </div>
             <% end %>
             <div class="col">

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#index'
+  end
+
   resources :users, only: [:show, :edit, :update], path: 'profile'
 
   root 'home#index'

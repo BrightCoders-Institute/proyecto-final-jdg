@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row ">
-      <h1 class="my-3 my-md-5 login-heading fw-medium fs-1 fw-light text-center">Order Details</h1>
+  <div class="row">
+    <h1 class="my-3 my-md-5 login-heading fw-medium fs-1 fw-light text-center">Order Details</h1>
   </div>
 
   <div class="row mt-4">
@@ -17,8 +17,6 @@
       <p><%= @order.status %></p>
     </div>
   </div>
-
-
 
   <div class="mt-4">
     <h2 class="login-heading fw-medium fs-2 fw-light">Order Summary:</h2>
@@ -55,7 +53,7 @@
       <%= link_to edit_adminorder_path(@order), class: "btn btn-primary" do %>
         <i class="fas fa-edit"></i> EDIT STATUS
       <% end %>
-      <%= link_to 'Back to Orders', adminorders_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Back to Orders', admin_dashboard_path, class: 'btn btn-secondary' %>
     </div>
   </div>
 </div>

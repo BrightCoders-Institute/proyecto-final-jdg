@@ -2,7 +2,7 @@
   <h1 class="my-5 login-heading fw-medium fs-1 fw-light text-center">Checkout</h1>
   <div row>
     <div class="col-md-8 offset-md-2">
-      <%= form_tag checkout_path, method: :post, class: 'checkout-form' do %>
+      <%= form_tag checkout_carts_path, method: :post, class: 'checkout-form' do %>
         <div class="mb-3">
           <label for="address_id" class="form-label">Select Address:</label>
           <%= select_tag 'address_id', options_from_collection_for_select(@address_options, 'id', 'full_address'), class: 'form-control' %>
