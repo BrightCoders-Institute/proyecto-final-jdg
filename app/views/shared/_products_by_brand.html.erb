@@ -4,14 +4,17 @@
     <div class="col-6 col-md-3">
       <div class="product">
         <%= link_to product_path(product), class: "text-decoration-none text-black" do %>
-          <%= image_tag(product.images.first, alt: product.name, class: "img-fluid img-thumbnail h-75") %>
+          <% if product.images.present? %>
+            <%= image_tag(product.images.first, alt: product.name, class: "img-fluid h-75") %>
+          <% else %>
+            <div class="placeholder-image">No Image</div>
+          <% end %>
           <h3><%= product.name %></h3>
           <p><%= number_to_currency(product.base_price) %></p>
         <% end %>
-        <!-- Add to Cart Form -->
         <%= form_tag add_to_cart_product_path(product), method: :post do %>
-          <%= submit_tag 'Add to Cart', class: 'btn btn-dark col-12' %>
-        <% end %>
+            <%= submit_tag 'Add to Cart', class: 'btn btn-dark col-12' %>
+          <% end %>
       </div>
     </div>
   <% end %>
