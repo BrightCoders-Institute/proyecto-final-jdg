@@ -1,4 +1,21 @@
-<div class="row">
-  <h1 class="my-3 login-heading fw-medium fs-1 fw-light text-center">CAPS</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="my-md-3 login-heading fw-medium fs-1 fw-light text-center">CAPS</h1>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-md-3">
+      <h2 class="login-heading fw-medium fs-3 fw-light">Filter by Brand:</h2>
+      <%= form_tag caps_path, method: :get, class: "form-inline" do %>
+        <%= select_tag :brand, options_for_select([["Show All", nil]] + @brands.map { |brand| [brand.name, brand.id] }, @selected_brand), class: "form-control" %>
+        <%= submit_tag "Apply Filter", class: "btn btn-primary mt-3" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= render partial: "shared/products" %>
+  </div>
 </div>
-<%= render partial: "shared/products" %>

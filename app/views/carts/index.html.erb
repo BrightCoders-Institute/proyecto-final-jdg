@@ -53,12 +53,18 @@
         </div>
 
         <div class="row d-flex justify-content-center my-md-3">
-          <%= link_to 'Continue Shopping', products_path, class: 'btn btn-outline-primary text-uppercase fw-bold my-2 col-8 col-md-4' %>
+          <%= link_to 'Continue Shopping', root_path, class: 'btn btn-outline-primary text-uppercase fw-bold my-2 col-8 col-md-4' %>
           <%= link_to 'Proceed to Checkout', checkout_carts_path, method: :post, class: 'btn btn-primary text-uppercase fw-bold my-2 col-8 col-md-4 offset-md-2' %>
         </div>
       <% else %>
-        <p class="text-center mt-5">Your cart is empty.</p>
-        <%= link_to 'Continue Shopping', products_path, class: 'btn btn-outline-primary text-uppercase fw-bold my-2 col-8 col-md-4' %>
+            <div class="container d-flex justify-content-center flex-column align-items-center">
+            <%= image_tag ("emtpyCart.webp"), class: "img-fluid cart-size"%>
+            <h3 class="text-bold text-center">Your cart is currently empty!</h3>
+            <div class="text-empty-cart text-center mt-3">
+              <p>Before to procede to checkout you must add some products to your shopping cart.</p>
+              <p>You will find a lot of interesting products in <%= link_to "Home", home_index_path %> page.</p>
+            </div>
+          </div>
       <% end %>
     </div>
   </div>

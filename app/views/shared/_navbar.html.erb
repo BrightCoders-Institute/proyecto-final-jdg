@@ -36,9 +36,6 @@
         </ul>
         <div class="text-center d-flex justify-content-between gap-4">
           <div class="row align-content-center">
-            <div class="col">
-              <i class="fa-solid fa-magnifying-glass color-icon"></i>
-            </div>
             <% if user_signed_in? %>
               <div class="col">
                 <% if current_user.usertype == "admin" %>
@@ -48,9 +45,11 @@
                 <% end %>
               </div>
             <% end %>
+         <% unless current_user && current_user.usertype == "admin" %>
             <div class="col">
               <%= link_to '' , carts_path, class: "fa-solid fa-bag-shopping color-icon" %>
             </div>
+          <% end %>
           </div>
           <div class="row">
             <% if user_signed_in? %>

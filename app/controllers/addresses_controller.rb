@@ -17,7 +17,7 @@ class AddressesController < ApplicationController
 
     if @address.save
       flash[:success] = "Address created successfully."
-      redirect_to addresses_path
+      redirect_to user_path(current_user)
     else
       render 'new'
     end
