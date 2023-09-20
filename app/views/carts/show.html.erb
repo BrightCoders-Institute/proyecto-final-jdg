@@ -7,6 +7,7 @@
           <label for="address_id" class="form-label">Select Address:</label>
           <%= select_tag 'address_id', options_from_collection_for_select(@address_options, 'id', 'full_address'), class: 'form-control' %>
         </div>
+        <%= link_to 'New Address', new_address_path, class: "btn btn-login text-uppercase fw-bold"  %>
 
         <h2 class="mt-5">Order Summary:</h2>
         <div class="table-responsive">
@@ -57,7 +58,7 @@
           <%= submit_tag 'Pay in cash', class: 'btn btn-primary text-uppercase fw-bold col-8 col-md-4' %>
         </div>
       <% end %>
-      
+
     </div>
   </div>
 </div>

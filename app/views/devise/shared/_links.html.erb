@@ -19,5 +19,5 @@
         <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "text-dark" %><br />
       <% end %>
     <% end %>
-      <%= link_to "Go to home", home_index_path, class: "text-orange" %><br />
+      <%= link_to "Go to home", root_path, class: "text-orange" %><br />
       

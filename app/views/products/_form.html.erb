@@ -1,76 +1,102 @@
 <%= form_with(model: product, data: { controller: "product-form" }) do |form| %>
-  <% if product.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+  <div class="container mt-5">
+    <% if product.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-        <% product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="my-3">
-    <%= form.label :name, style: "display: block " %>
-    <%= form.text_field :name, class: "w-100 form-control" %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description, class: "w-100 form-control" %>
-  </div>
-
-  <div class="my-3" data-controller="productna">
-    <%= form.label :product_type, style: "display: block" %>
-    <%= form.select :product_type, ["Caps", "Pins", "Cases"], {}, class: "w-100 form-control", data: { target: "product-form.productType" } %>
-  </div>
-
-  <div class="my-3">
-    <%= form.label :brand_id %>
-    <%= form.collection_select :brand_id, Brand.all, :id, :name, prompt: "Select a Brand" %>
-  </div>
-
-  <div class="my-3">
-    <%= form.label :images, "Edit/Add Images" %>
-    <% product.images.each_with_index do |image, index| %>
-      <div class="mb-3">
-        <%= form.label "image_#{index}", "Edit Image #{index + 1}" %>
-        <%= image_tag image, class: "img-thumbnail custom-thumbnail", width: 100, height: 100 %>
-        <%= form.file_field "image_#{index}", class: "form-control-file" %>
+        <ul>
+          <% product.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
-    <!-- Solo mostrar el campo de carga de archivos si no hay imágenes adjuntas -->
-    <% unless product.images.attached? %>
-      <%= form.file_field :images, multiple: true, class: "form-control-file" %>
-    <% end %>
-  </div>
 
-  <div class="my-3">
-    <%= form.label :size, style: "display: block" %>
-    <%= form.select :size, ["N/A","Small", "Medium", "Large", "Extra Large"], {}, class: "w-100 form-control", id: "size_field", data: { target: "product-form.sizeField" } %>
-  </div>  
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Enter Product Name (e.g., Cool Hat)" %>
+        </div>
 
-  <div class="my-3">
-    <%= form.label :base_price, style: "display: block" %>
-    <%= form.text_field :base_price, class: "w-100 form-control", id: "product_base_price" %>
-  </div>
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control", placeholder: "Enter Product Description" %>
+        </div>
 
-  <div>
-    <%= form.label :discount, style: "display: block" %>
-    <%= form.text_field :discount, class: "w-100 form-control", id: "product_discount", value: (product.discount || 0) %>
-  </div>  
+        <div class="form-group">
+          <%= form.label :product_type %>
+          <%= form.select :product_type, ["Caps", "Pins", "Cases"], {}, class: "form-control", placeholder: "Select Product Type" %>
+        </div>
 
-  <div>
-    <%= form.label :stock, style: "display: block" %>
-    <%= form.number_field :stock %>
-  </div>
+        <div class="form-group">
+          <%= form.label :brand_id %>
+          <%= form.collection_select :brand_id, Brand.all, :id, :name, { prompt: "Select a Brand" }, class: "form-control" %>
+        </div>
 
-  <div class="my-3">
-    <%= form.label :availability, style: "display: block" %>
-    <%= form.check_box :availability %>
-  </div>
+        <div class="form-group">
+          <%= link_to "Create brand", brands_path, class: "btn btn-dark btn-block w-100" %>
+        </div>
+      </div>
 
-  <div class="text-center">
-    <%= form.submit class: "btn custom-button text-uppercase fw-bold mt-3 " %>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :images, "Edit / Add Images" %>
+          <% product.images.each_with_index do |image, index| %>
+            <div class="mb-3">
+              <%= form.label "image_#{index}", "Edit Image #{index + 1}" %>
+              <%= image_tag image, class: "img-thumbnail custom-thumbnail", width: 100, height: 100 %>
+              <%= form.file_field "image_#{index}", class: "form-control-file" %>
+            </div>
+          <% end %>
+          <!-- Only show the file upload field if no images are attached -->
+          <% unless product.images.attached? %>
+            <%= form.file_field :images, multiple: true, class: "form-control-file", placeholder: "Upload Product Images" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :size %>
+          <%= form.select :size, ["N/A", "Small", "Medium", "Large", "Extra Large"], {}, class: "form-control", placeholder: "Select Product Size" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :base_price %>
+          <%= form.text_field :base_price, class: "form-control", placeholder: "Enter Base Price (e.g., 29.99)" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :discount %>
+          <%= form.text_field :discount, class: "form-control", placeholder: "Enter Discount Amount (e.g., 10%)" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :stock %>
+          <%= form.number_field :stock, class: "form-control", placeholder: "Enter Available Stock Quantity" %>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= form.label :availability %>
+          <%= form.check_box :availability, class: "form-check-input" %>
+          <label class="form-check-label" for="<%= form.object_name %>_availability">Product is Available</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <%= form.submit class: "btn btn-primary btn-lg custom-button" %>
+    </div>
   </div>
 <% end %>

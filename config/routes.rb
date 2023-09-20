@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :addresses
+
   resources :carts do
     delete 'remove_product/:line_item_id', to: 'carts#remove_product', on: :member, as: :remove_product
     post 'checkout', on: :collection

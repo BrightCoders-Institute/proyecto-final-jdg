@@ -46,7 +46,7 @@ class CartsController < ApplicationController
       end
 
       @cart.destroy
-      redirect_to orders_path, notice: 'Order placed successfully.'
+      redirect_to order_path(@order), notice: 'Order placed successfully.'
     end
     OrderMailer.order_mail(@order).deliver_now
   end
@@ -57,9 +57,11 @@ class CartsController < ApplicationController
   end
 
   private
+
   def find_product
     @product = Product.find(params[:id])
   end
+
   def load_common_data
     @cart = current_user.cart
     @address_options = current_user.addresses
