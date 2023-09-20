@@ -7,6 +7,7 @@
           <label for="address_id" class="form-label">Select Address:</label>
           <%= select_tag 'address_id', options_from_collection_for_select(@address_options, 'id', 'full_address'), class: 'form-control' %>
         </div>
+        <%= link_to "Add a new address", new_address_path, class:"btn btn-dark" %>
 
         <h2 class="mt-5">Order Summary:</h2>
         <div class="table-responsive">
