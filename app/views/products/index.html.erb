@@ -2,6 +2,15 @@
   <div class="row text-center">
     <h1 class="my-5 login-heading mb-4 fw-medium fs-1 fw-light">Products</h1>
   </div>
+
+  <%= form_tag products_path, method: :get, class: "form-inline justify-content-center mb-3 col-md-3" do %>
+    <div class="form-group mr-2">
+      <%= label_tag :product_type, "Product Type:" %>
+      <%= select_tag :product_type, options_for_select(["All", "Cases", "Pins", "Caps"], params[:product_type]), class: "form-control" %>
+    </div>
+    <%= submit_tag "Filter", class: "btn btn-primary mt-3" %>
+  <% end %>
+
   <div id="products" class="table-responsive">
     <table class="table table-hover text-center">
       <thead>

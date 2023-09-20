@@ -33,12 +33,17 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     if user_signed_in? && current_user.usertype == "admin"
-      @products = Product.paginate(page: params[:page], per_page: 10)
+      @products = Product.all
+
+      if params[:product_type].present? && params[:product_type] != "All"
+        @products = @products.where(product_type: params[:product_type])
+      end
+
+      @products = @products.paginate(page: params[:page], per_page: 10)
     else
       redirect_to root_path, alert: 'You are not authorized to access this page.'
     end
   end
-
   # GET /products/1 or /products/1.json
   def show
     @product = Product.find(params[:id])
