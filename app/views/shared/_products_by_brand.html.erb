@@ -2,7 +2,7 @@
   <% caps_products_by_brand = @caps_products_by_brand[brand.id] %>
   <% caps_products_by_brand.each do |product| %>
     <div class="col-6 col-md-3">
-      <div class="product">
+      <div class="product my-3">
         <%= link_to product_path(product), class: "text-decoration-none text-black" do %>
           <% if product.images.present? %>
             <%= image_tag(product.images.first, alt: product.name, class: "img-fluid h-75") %>
