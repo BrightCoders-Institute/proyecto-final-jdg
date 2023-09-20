@@ -32,7 +32,11 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.paginate(page: params[:page], per_page: 10) # Mostrar 10 productos por página
+    if user_signed_in? && current_user.usertype == "admin"
+      @products = Product.paginate(page: params[:page], per_page: 10)
+    else
+      redirect_to root_path, alert: 'You are not authorized to access this page.'
+    end
   end
 
   # GET /products/1 or /products/1.json
