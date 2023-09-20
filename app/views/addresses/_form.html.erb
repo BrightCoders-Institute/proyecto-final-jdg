@@ -1,7 +1,8 @@
 <div class="row offset-md-3 col-md-6">
   <%= form_for(@address) do |f| %>
     <%= render "/devise/shared/error_messages", resource: @address %>
-    <div>
+
+    <div class="my-3">
       <%= f.label :address %>
       <%= f.text_area :address, class: "w-100 form-control", id: "address-input" %>
     </div>
@@ -15,7 +16,7 @@
       <%= f.text_field :city, class: "w-100 form-control", id: "address_city" %>
     </div>
 
-    <div>
+    <div class="my-3">
       <%= f.label :state %>
       <%= f.text_field :state, class: "w-100 form-control", id: "address_state" %>
     </div>
@@ -32,10 +33,6 @@
 
     <div class="text-center my-5">
       <%= f.submit "Save Address", class: "btn btn-login text-uppercase fw-bold" %>
-      <% if @address.persisted? %>
-        <%= button_to 'Delete',  address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger text-uppercase fw-bold mx-2 p-2' %>
-      <% end %>
-
       <%= link_to "Back to Profile", user_path(current_user), class: "btn btn-secondary text-uppercase fw-bold p-2" %>
     </div>
   <% end %>
